@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RICK</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;700;900&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background:#08080a; color:#cacad4; font-family:'Barlow',sans-serif; overflow-x:hidden; }
+
+/* ── NAV ── */
+nav.bar {
+  position: fixed; top:0; left:0; right:0; height:60px; z-index:100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 1.5rem;
+  background: rgba(8,8,10,0.95);
+  border-bottom: 1px solid rgba(57,255,20,0.10);
+}
+.brand { font-family:'Share Tech Mono',monospace; font-size:.62rem; color:#888896; line-height:1.4; }
+.brand b { color:#cacad4; font-weight:400; display:block; font-size:.82rem; letter-spacing:.08em; }
+.links { display:flex; gap:2rem; list-style:none; }
+.links a { font-family:'Share Tech Mono',monospace; font-size:.6rem; letter-spacing:.18em; color:#888896; text-decoration:none; text-transform:uppercase; transition:color .2s; position:relative; }
+.links a::after { content:''; position:absolute; left:0; bottom:-3px; width:0; height:1px; background:#39ff14; transition:width .3s; }
+.links a:hover { color:#39ff14; }
+.links a:hover::after { width:100%; }
+
+.hbg { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; }
+.hbg span { display:block; width:22px; height:1.5px; background:#39ff14; transition:transform .3s,opacity .3s; transform-origin:center; }
+.hbg.open span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+.hbg.open span:nth-child(2){ opacity:0; }
+.hbg.open span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+nav.tray { display:none; position:fixed; top:60px; right:0; bottom:0; width:min(260px,78vw); background:rgba(8,8,10,.98); border-left:1px solid rgba(57,255,20,.12); z-index:99; flex-direction:column; padding:2.5rem 2rem; transform:translateX(100%); transition:transform .4s cubic-bezier(.16,1,.3,1); }
+nav.tray.open { transform:translateX(0); }
+nav.tray a { font-family:'Barlow Condensed',sans-serif; font-size:1.8rem; font-weight:700; letter-spacing:.15em; color:#888896; text-decoration:none; text-transform:uppercase; padding:.9rem 0; border-bottom:1px solid #22222a; display:block; transform:translateX(40px); opacity:0; transition:color .2s,transform .4s cubic-bezier(.16,1,.3,1),opacity .35s; }
+nav.tray.open a              { transform:translateX(0); opacity:1; }
+nav.tray.open a:nth-child(1) { transition-delay:.05s; }
+nav.tray.open a:nth-child(2) { transition-delay:.10s; }
+nav.tray.open a:nth-child(3) { transition-delay:.15s; }
+nav.tray.open a:nth-child(4) { transition-delay:.20s; }
+nav.tray a:hover { color:#39ff14; }
+.veil { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:98; opacity:0; pointer-events:none; transition:opacity .3s; }
+.veil.open { opacity:1; pointer-events:all; }
+
+/* ── HERO ──
+   TWO COLUMNS AT ALL SIZES.
+   No stacking. No breakpoints that change flex-direction.
+   Left = text. Right = photo. Always.
+── */
+.hero {
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: row;      /* ALWAYS row */
+  align-items: stretch;
+  background: #08080a;
+  overflow: hidden;
+}
+
+/* LEFT — text, 50% wide */
+.hl {
+  width: 50%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 2rem 3rem 5vw;
+  background-color: #08080a;
+  background-image:
+    linear-gradient(rgba(57,255,20,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57,255,20,.03) 1px, transparent 1px);
+  background-size: 52px 52px;
+  border-right: 1px solid rgba(57,255,20,.12);
+  overflow: hidden;
+}
+
+/* RIGHT — photo, remaining 50% */
+.hr {
+  width: 50%;
+  flex-shrink: 0;
+  flex-grow: 0;
+  background-color: #111115;
+  background-size: 65%;
+  background-position: center top;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 10%, black 25%, black 100%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.5) 10%, black 25%, black 100%);
+}
+.hr::before { content:''; position:absolute; top:1.5rem; right:1.5rem; width:20px; height:20px; border-top:1.5px solid rgba(57,255,20,.5); border-right:1.5px solid rgba(57,255,20,.5); z-index:10; }
+.hr::after  { content:''; position:absolute; bottom:1.5rem; right:1.5rem; width:20px; height:20px; border-bottom:1.5px solid rgba(57,255,20,.5); border-right:1.5px solid rgba(57,255,20,.5); z-index:10; }
+
+/* ── TEXT STYLES ── */
+.num { font-family:'Share Tech Mono',monospace; font-size:.6rem; letter-spacing:.25em; color:#1d7a0e; margin-bottom:1.5rem; display:flex; align-items:center; gap:.7rem; }
+.num::after { content:''; flex:1; max-width:40px; height:1px; background:#1d7a0e; }
+.label { font-family:'Share Tech Mono',monospace; font-size:.62rem; letter-spacing:.28em; color:#39ff14; text-transform:uppercase; margin-bottom:1rem; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(2.2rem,7vw,6rem); letter-spacing:.02em; line-height:.9; color:#cacad4; text-transform:uppercase; margin-bottom:1.2rem; }
+h1 .a { color:#39ff14; opacity:.7; }
+.tagline { font-family:'Share Tech Mono',monospace; font-size:clamp(.55rem,.9vw,.75rem); letter-spacing:.22em; color:#50505a; text-transform:uppercase; line-height:2; margin-bottom:2rem; }
+.cta {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  width: min(280px, 80%);
+  font-family:'Share Tech Mono',monospace; font-size:.6rem; letter-spacing:.2em;
+  color:#cacad4; text-decoration:none; text-transform:uppercase;
+  border:1px solid rgba(57,255,20,.25); padding:1.2rem 1.4rem;
+  position:relative; overflow:hidden; transition:color .3s,border-color .3s;
+}
+.cta::before { content:''; position:absolute; inset:0; background:#39ff14; transform:translateX(-101%); transition:transform .35s cubic-bezier(.16,1,.3,1); z-index:-1; }
+.cta:hover { color:#08080a; border-color:#39ff14; }
+.cta:hover::before { transform:translateX(0); }
+.cta span { color:#39ff14; font-size:.9rem; }
+.cta:hover span { color:#08080a; }
+
+.scroll { margin-top:auto; padding-top:2rem; display:flex; align-items:center; gap:1rem; font-family:'Share Tech Mono',monospace; font-size:.55rem; letter-spacing:.25em; color:#50505a; }
+.scroll::after { content:''; width:1px; height:36px; background:linear-gradient(to bottom,#50505a,transparent); }
+
+/* ── HAMBURGER on mobile ── */
+@media (max-width: 640px) {
+  .links { display:none; }
+  .hbg   { display:flex; }
+  nav.tray { display:flex; }
+  /* hero stays two columns — no stacking */
+}
+</style>
+</head>
+<body>
+
+<nav class="bar">
+  <div class="brand">Hi! My name is <b>RICK</b></div>
+  <ul class="links">
+    <li><a href="#reel">Reel</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+</nav>
+<div class="veil" id="veil"></div>
+<nav class="tray" id="tray">
+  <a href="#reel">Reel</a>
+  <a href="#experience">Experience</a>
+  <a href="#work">Work</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="hero">
+  <div class="hl">
+    <div class="num">01</div>
+    <div class="label">Digital Creative</div>
+    <h1>DE<span class="a">SI</span>GN<br>CO<span class="a">DE</span><br>CRE<span class="a">ATE</span></h1>
+    <div class="tagline">DESIGNER /<br>DEVELOPER /<br>STORYTELLER</div>
+    <a href="#work" class="cta">VIEW WORK <span>+</span></a>
+    <div class="scroll">SCROLL</div>
+  </div>
+  <div class="hr"></div>
+</div>
+
+<script>
+const hbg=document.getElementById('hbg'),tray=document.getElementById('tray'),veil=document.getElementById('veil');
+function closeMenu(){hbg.classList.remove('open');tray.classList.remove('open');veil.classList.remove('open');document.body.style.overflow='';}
+hbg.addEventListener('click',()=>{const o=tray.classList.toggle('open');hbg.classList.toggle('open',o);veil.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';}); 
+veil.addEventListener('click',closeMenu);
+tray.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+</script>
+</body>
+</html>

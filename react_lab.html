@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React.js Intensive — Course Syllabus</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f0e8;
+    --paper-dark: #ede8dc;
+    --rule: #c8b99a;
+    --accent: #b5341b;
+    --accent-soft: #e8c9c2;
+    --muted: #6b6256;
+    --code-bg: #1e1c18;
+    --code-fg: #e8c97a;
+    --week1: #2a4a3e;
+    --week2: #1c3a5e;
+    --week3: #4a2a1c;
+    --week4: #3a1c4a;
+    --week5: #1c3a2a;
+    --week6: #4a3a1c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3rem 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+  header::after {
+    content: 'REACT.JS';
+    position: absolute;
+    right: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: -4px;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .course-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--rule);
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .meta-item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(245,240,232,0.6);
+  }
+  .meta-item strong {
+    display: block;
+    color: var(--paper);
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  /* ── SECTION HEADINGS ── */
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── COURSE INFO BOX ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin-bottom: 2rem;
+  }
+  .info-cell {
+    background: var(--paper);
+    padding: 1rem 1.25rem;
+  }
+  .info-cell .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+  .info-cell .value {
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  /* ── COURSE DESCRIPTION ── */
+  .description {
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.5rem;
+    background: var(--paper-dark);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #2a2520;
+  }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    background: var(--code-bg);
+    color: var(--code-fg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    line-height: 1.7;
+    border-left: 3px solid var(--code-fg);
+  }
+  .note-box .comment { color: #6a8a6a; }
+
+  /* ── RESOURCES ── */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .resource-card {
+    border: 1px solid var(--rule);
+    padding: 1rem 1.1rem;
+    background: white;
+  }
+  .resource-card .res-type {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+  }
+  .resource-card .res-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+  .resource-card .res-url {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    word-break: break-all;
+  }
+  .resource-card a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .resource-card a:hover { text-decoration: underline; }
+
+  /* ── WEEK CARDS ── */
+  .week {
+    margin-bottom: 2rem;
+    border: 1px solid var(--rule);
+    overflow: hidden;
+  }
+  .week-header {
+    display: flex;
+    align-items: stretch;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .week-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    padding: 1rem 0.75rem;
+    background: var(--accent);
+    color: white;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+  .week-title-block {
+    padding: 0.9rem 1.25rem;
+    flex: 1;
+  }
+  .week-dates {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 0.2rem;
+  }
+  .week-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+  .week-subtitle {
+    font-size: 0.8rem;
+    color: rgba(245,240,232,0.65);
+    font-style: italic;
+    margin-top: 0.15rem;
+  }
+
+  .week-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  @media (max-width: 580px) {
+    .week-body { grid-template-columns: 1fr; }
+  }
+
+  .week-col {
+    padding: 1.25rem 1.4rem;
+    background: var(--paper);
+    border-right: 1px solid var(--rule);
+  }
+  .week-col:last-child { border-right: none; }
+  .week-col-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .week-col ul {
+    list-style: none;
+    padding: 0;
+  }
+  .week-col ul li {
+    font-size: 0.88rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px dashed var(--rule);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    line-height: 1.5;
+  }
+  .week-col ul li:last-child { border-bottom: none; }
+  .week-col ul li::before {
+    content: '›';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  .project-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .project-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+  .project-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── WEEK COLOR ACCENTS per header ── */
+  .week:nth-child(1) .week-num { background: var(--week1); }
+  .week:nth-child(2) .week-num { background: var(--week2); }
+  .week:nth-child(3) .week-num { background: var(--week3); }
+  .week:nth-child(4) .week-num { background: var(--week4); }
+  .week:nth-child(5) .week-num { background: var(--week5); }
+  .week:nth-child(6) .week-num { background: var(--week6); }
+
+  /* ── GRADING / EXPECTATIONS ── */
+  .checklist {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .checklist li {
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 0.65rem 1rem;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .checklist li::before {
+    content: '□';
+    font-size: 1rem;
+    color: var(--accent);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--rule);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: var(--paper-dark);
+  }
+
+  @media print {
+    .week { break-inside: avoid; }
+    header::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="course-label">Course Syllabus · Self-Directed Study</div>
+    <h1>React.js <em>Intensive</em><br>for the Returning Developer</h1>
+    <div class="header-meta">
+      <div class="meta-item"><strong>COURSE CODE</strong>RJS-401</div>
+      <div class="meta-item"><strong>DURATION</strong>6 Weeks</div>
+      <div class="meta-item"><strong>DAILY HOURS</strong>1–3 hrs / day</div>
+      <div class="meta-item"><strong>START DATE</strong>May 27, 2026</div>
+      <div class="meta-item"><strong>END DATE</strong>July 7, 2026</div>
+      <div class="meta-item"><strong>PREREQUISITE</strong>Vanilla JS (prior exp.)</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- COURSE INFO -->
+  <div class="section-title">Course Information</div>
+  <div class="info-grid">
+    <div class="info-cell">
+      <div class="label">Format</div>
+      <div class="value">Self-paced, project-driven</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">Primary Language</div>
+      <div class="value">JavaScript / JSX</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">Tools Required</div>
+      <div class="value">VS Code, Node.js, npm/npx</div>
+    </div>
+    <div class="info-cell">
+      <div class="label">Final Project</div>
+      <div class="value">Full React SPA with API</div>
+    </div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="description">
+    This course is designed for developers who previously worked in vanilla JavaScript and are returning to web development — specifically to learn React.js from a practical, project-first perspective. Each week builds directly on the last, progressing from JavaScript refresher and toolchain setup through component architecture, state management, API integration, and a final deployable project. Daily sessions run 1–3 hours depending on your schedule. Exercises are short and hands-on; projects are cumulative and portfolio-worthy.
+  </div>
+
+  <!-- SETUP NOTE -->
+  <div class="note-box">
+    <span class="comment">// Before Week 1 — install these tools</span><br>
+    $ node --version          <span class="comment"># need v18+ → nodejs.org</span><br>
+    $ npm --version           <span class="comment"># comes with Node</span><br>
+    $ code --version          <span class="comment"># VS Code → code.visualstudio.com</span><br>
+    $ npx create-react-app --version   <span class="comment"># or use Vite (preferred)</span><br>
+    <span class="comment">// Recommended VS Code extensions: ES7 React Snippets, Prettier, ESLint</span>
+  </div>
+
+
+  <!-- RESOURCES -->
+  <div class="section-title">Core Learning Resources</div>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <div class="res-type">📖 Official Docs</div>
+      <div class="res-name">React.dev (Official)</div>
+      <div class="res-url"><a href="https://react.dev" target="_blank">react.dev</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">🎥 YouTube — Free Course</div>
+      <div class="res-name">Scrimba — Learn React (Bob Ziroll)</div>
+      <div class="res-url"><a href="https://www.youtube.com/watch?v=x55sdt9giMY" target="_blank">youtube.com — Scrimba React Course</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">🎥 YouTube — Crash Course</div>
+      <div class="res-name">Traversy Media — React Crash Course</div>
+      <div class="res-url"><a href="https://www.youtube.com/watch?v=w7ejDZ8SWv8" target="_blank">youtube.com — Traversy React</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">🎥 YouTube — Deep Dives</div>
+      <div class="res-name">Codevolution — React Tutorial Series</div>
+      <div class="res-url"><a href="https://www.youtube.com/@Codevolution" target="_blank">youtube.com/@Codevolution</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">🎥 YouTube — Hooks & Patterns</div>
+      <div class="res-name">Web Dev Simplified — React Hooks</div>
+      <div class="res-url"><a href="https://www.youtube.com/@WebDevSimplified" target="_blank">youtube.com/@WebDevSimplified</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">🏋️ Practice Platform</div>
+      <div class="res-name">Scrimba Interactive React Course</div>
+      <div class="res-url"><a href="https://scrimba.com/learn-react-c0e" target="_blank">scrimba.com/learn-react</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">🏋️ Exercises</div>
+      <div class="res-name">React Coding Challenges (GitHub)</div>
+      <div class="res-url"><a href="https://github.com/alexgurr/react-coding-challenges" target="_blank">github.com/alexgurr/react-coding-challenges</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">📖 Reference</div>
+      <div class="res-name">MDN JavaScript Refresher</div>
+      <div class="res-url"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">developer.mozilla.org/JS</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">📖 Read-Along</div>
+      <div class="res-name">The Road to React (free online)</div>
+      <div class="res-url"><a href="https://www.roadtoreact.com" target="_blank">roadtoreact.com</a></div>
+    </div>
+  </div>
+
+
+  <!-- WEEKS -->
+  <div class="section-title">Weekly Schedule</div>
+
+  <!-- WEEK 1 -->
+  <div class="week">
+    <div class="week-header">
+      <div class="week-num">Week 01</div>
+      <div class="week-title-block">
+        <div class="week-dates">May 27 – Jun 2, 2026</div>
+        <div class="week-title">JS Refresh + React Foundations</div>
+        <div class="week-subtitle">Shake off the rust. Get React running. Understand why it exists.</div>
+      </div>
+    </div>
+    <div class="week-body">
+      <div class="week-col">
+        <div class="week-col-title">Topics Covered</div>
+        <ul>
+          <li>ES6+ refresher: const/let, arrow functions, destructuring, spread/rest</li>
+          <li>Template literals, array methods (map, filter, reduce)</li>
+          <li>Modules: import / export</li>
+          <li>What is React? Virtual DOM, component model</li>
+          <li>Create-React-App vs Vite setup</li>
+          <li>JSX syntax — HTML in JS</li>
+          <li>Functional components, returning JSX</li>
+          <li>Props: passing data parent → child</li>
+        </ul>
+      </div>
+      <div class="week-col">
+        <div class="week-col-title">Exercises &amp; Project</div>
+        <div class="project-tag">Exercise</div>
+        <div class="project-name">JS30-Mini</div>
+        <div class="project-desc">Write 5 small scripts using only ES6+ features — destructuring objects, chaining array methods, writing arrow functions. No frameworks.</div>
+        <br>
+        <div class="project-tag">Week Project</div>
+        <div class="project-name">Static Profile Card</div>
+        <div class="project-desc">Build a React component that renders a personal profile card using hardcoded props. Practice JSX, component structure, and passing data via props.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week">
+    <div class="week-header">
+      <div class="week-num">Week 02</div>
+      <div class="week-title-block">
+        <div class="week-dates">Jun 3 – Jun 9, 2026</div>
+        <div class="week-title">State, Events &amp; Lists</div>
+        <div class="week-subtitle">Make your UI respond to the user.</div>
+      </div>
+    </div>
+    <div class="week-body">
+      <div class="week-col">
+        <div class="week-col-title">Topics Covered</div>
+        <ul>
+          <li>useState hook — reading and updating state</li>
+          <li>Event handlers: onClick, onChange, onSubmit</li>
+          <li>Controlled vs. uncontrolled inputs</li>
+          <li>Conditional rendering (ternary, &&amp;&amp;)</li>
+          <li>Rendering lists with .map() + key prop</li>
+          <li>Lifting state up to parent components</li>
+          <li>Component composition patterns</li>
+        </ul>
+      </div>
+      <div class="week-col">
+        <div class="week-col-title">Exercises &amp; Project</div>
+        <div class="project-tag">Exercise</div>
+        <div class="project-name">Counter + Toggle Drills</div>
+        <div class="project-desc">Build: (1) a counter with increment/decrement/reset buttons, (2) a show/hide toggle, (3) a live character counter for a textarea input.</div>
+        <br>
+        <div class="project-tag">Week Project</div>
+        <div class="project-name">Task List App</div>
+        <div class="project-desc">Build a to-do list where users can add, complete, and delete tasks. Renders a list from state, uses controlled inputs, and lifts state through multiple components.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week">
+    <div class="week-header">
+      <div class="week-num">Week 03</div>
+      <div class="week-title-block">
+        <div class="week-dates">Jun 10 – Jun 16, 2026</div>
+        <div class="week-title">useEffect &amp; Data Fetching</div>
+        <div class="week-subtitle">Connect your components to the outside world.</div>
+      </div>
+    </div>
+    <div class="week-body">
+      <div class="week-col">
+        <div class="week-col-title">Topics Covered</div>
+        <ul>
+          <li>useEffect hook — side effects explained</li>
+          <li>Dependency array: [], [value], no array</li>
+          <li>Fetching data with fetch() and async/await</li>
+          <li>Loading and error states</li>
+          <li>Cleanup functions in useEffect</li>
+          <li>Introduction to custom hooks</li>
+          <li>Free public APIs for practice (JSONPlaceholder, OpenWeather, etc.)</li>
+        </ul>
+      </div>
+      <div class="week-col">
+        <div class="week-col-title">Exercises &amp; Project</div>
+        <div class="project-tag">Exercise</div>
+        <div class="project-name">API Fetch Drills</div>
+        <div class="project-desc">Fetch and display data from JSONPlaceholder: (1) list of users, (2) posts by user ID, (3) add a loading spinner and an error message for a failed request.</div>
+        <br>
+        <div class="project-tag">Week Project</div>
+        <div class="project-name">Weather Widget</div>
+        <div class="project-desc">Build a weather app using the OpenWeatherMap API. User types a city name, app fetches and displays current conditions. Handles loading, error, and empty states properly.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week">
+    <div class="week-header">
+      <div class="week-num">Week 04</div>
+      <div class="week-title-block">
+        <div class="week-dates">Jun 17 – Jun 23, 2026</div>
+        <div class="week-title">React Router &amp; Multi-Page Apps</div>
+        <div class="week-subtitle">Build apps with real navigation.</div>
+      </div>
+    </div>
+    <div class="week-body">
+      <div class="week-col">
+        <div class="week-col-title">Topics Covered</div>
+        <ul>
+          <li>Single-Page App (SPA) concept</li>
+          <li>React Router v6 — BrowserRouter, Routes, Route</li>
+          <li>Link and NavLink components</li>
+          <li>useParams for dynamic routes (e.g. /post/:id)</li>
+          <li>useNavigate for programmatic navigation</li>
+          <li>Nested routes and layout components</li>
+          <li>404 / catch-all routes</li>
+        </ul>
+      </div>
+      <div class="week-col">
+        <div class="week-col-title">Exercises &amp; Project</div>
+        <div class="project-tag">Exercise</div>
+        <div class="project-name">Route Drills</div>
+        <div class="project-desc">Build a 3-page app (Home, About, Contact) with working navigation. Add a dynamic /user/:id route that reads the param and displays it on screen.</div>
+        <br>
+        <div class="project-tag">Week Project</div>
+        <div class="project-name">Blog / Portfolio Viewer</div>
+        <div class="project-desc">Multi-page React app with a home feed (list of posts from an API), a post detail page (/post/:id), and an About page. Navigation via React Router. Good candidate for your own portfolio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week">
+    <div class="week-header">
+      <div class="week-num">Week 05</div>
+      <div class="week-title-block">
+        <div class="week-dates">Jun 24 – Jun 30, 2026</div>
+        <div class="week-title">Global State &amp; Context API</div>
+        <div class="week-subtitle">Stop prop-drilling. Share state across the whole app.</div>
+      </div>
+    </div>
+    <div class="week-body">
+      <div class="week-col">
+        <div class="week-col-title">Topics Covered</div>
+        <ul>
+          <li>The prop-drilling problem</li>
+          <li>React Context API — createContext, Provider, useContext</li>
+          <li>useReducer for complex state logic</li>
+          <li>Combining useReducer + Context (Redux-lite pattern)</li>
+          <li>Introduction to Zustand (lightweight state library)</li>
+          <li>When to use local vs global state</li>
+          <li>Performance: avoiding unnecessary re-renders</li>
+        </ul>
+      </div>
+      <div class="week-col">
+        <div class="week-col-title">Exercises &amp; Project</div>
+        <div class="project-tag">Exercise</div>
+        <div class="project-name">Theme Toggle + Cart Drill</div>
+        <div class="project-desc">Build: (1) a dark/light theme toggle using Context across 3 nested components, (2) a simple shopping cart counter accessible from both a product page and a nav bar.</div>
+        <br>
+        <div class="project-tag">Week Project</div>
+        <div class="project-name">Shopping Cart App</div>
+        <div class="project-desc">Product listing page + cart page with global state via Context + useReducer. Add/remove items, update quantities, show total. This is a classic React portfolio piece.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 6 -->
+  <div class="week">
+    <div class="week-header">
+      <div class="week-num">Week 06</div>
+      <div class="week-title-block">
+        <div class="week-dates">Jul 1 – Jul 7, 2026</div>
+        <div class="week-title">Final Project &amp; Deployment</div>
+        <div class="week-subtitle">Ship something real.</div>
+      </div>
+    </div>
+    <div class="week-body">
+      <div class="week-col">
+        <div class="week-col-title">Topics Covered</div>
+        <ul>
+          <li>Project planning: wireframe → components → data</li>
+          <li>Form handling best practices</li>
+          <li>CSS in React: modules, Tailwind basics, or styled-components</li>
+          <li>Performance: useMemo, useCallback (intro)</li>
+          <li>Building for production: npm run build</li>
+          <li>Deployment: Netlify or Vercel (drag-and-drop or GitHub connect)</li>
+          <li>README writing + GitHub portfolio presentation</li>
+        </ul>
+      </div>
+      <div class="week-col">
+        <div class="week-col-title">Final Project</div>
+        <div class="project-tag">Capstone</div>
+        <div class="project-name">Choose Your Own React SPA</div>
+        <div class="project-desc">
+          Build and deploy a complete React app of your choosing. Must include: multiple routes, data fetching from a real API, global state (Context or Zustand), loading/error handling, and a live deployment URL.<br><br>
+          <strong>Suggested ideas:</strong> Movie search app (TMDB API), GitHub profile viewer, crypto price tracker, recipe finder, or a personal portfolio built in React.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- EXPECTATIONS -->
+  <div class="section-title">Daily Study Expectations</div>
+  <ul class="checklist">
+    <li>Watch or read the day's assigned resource (30–60 min)</li>
+    <li>Complete at least one small coded exercise</li>
+    <li>Commit code to GitHub — even broken work</li>
+    <li>Keep a short dev log (what you learned, what confused you)</li>
+    <li>Build the week's project incrementally, not all at once</li>
+    <li>If stuck &gt; 20 min, search docs first, then ask for help</li>
+  </ul>
+
+  <!-- SUPPLEMENTAL -->
+  <div class="section-title">Supplemental Resources</div>
+  <div class="resources-grid">
+    <div class="resource-card">
+      <div class="res-type">🎥 YouTube — Full Tutorial</div>
+      <div class="res-name">Net Ninja — React Tutorial for Beginners</div>
+      <div class="res-url"><a href="https://www.youtube.com/@NetNinja" target="_blank">youtube.com/@NetNinja</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">🎥 YouTube — React Router v6</div>
+      <div class="res-name">Web Dev Simplified — React Router v6</div>
+      <div class="res-url"><a href="https://www.youtube.com/watch?v=Ul3y1LXxzdU" target="_blank">youtube.com — React Router v6</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">🏋️ Practice</div>
+      <div class="res-name">Frontend Mentor — React Challenges</div>
+      <div class="res-url"><a href="https://www.frontendmentor.io" target="_blank">frontendmentor.io</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">📖 Docs — Routing</div>
+      <div class="res-name">React Router v6 Docs</div>
+      <div class="res-url"><a href="https://reactrouter.com/en/main" target="_blank">reactrouter.com/en/main</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">📖 Docs — State</div>
+      <div class="res-name">Zustand (simple state management)</div>
+      <div class="res-url"><a href="https://github.com/pmndrs/zustand" target="_blank">github.com/pmndrs/zustand</a></div>
+    </div>
+    <div class="resource-card">
+      <div class="res-type">🚀 Deploy</div>
+      <div class="res-name">Netlify — free static hosting</div>
+      <div class="res-url"><a href="https://www.netlify.com" target="_blank">netlify.com</a></div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  RJS-401 · React.js Intensive for the Returning Developer · Starts May 27, 2026 · Self-directed study
+</footer>
+
+</body>
+</html>

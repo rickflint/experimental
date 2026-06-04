@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Whitlock &amp; Crane — Attorneys at Law</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Libre+Franklin:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#101820;
+    --ink-soft:#2a3540;
+    --slate:#5a6672;
+    --gold:#b08d4f;
+    --gold-soft:#c9a96a;
+    --paper:#f7f5f0;
+    --paper-2:#efebe3;
+    --white:#ffffff;
+    --line:rgba(16,24,32,.12);
+    --shadow:0 24px 60px -20px rgba(16,24,32,.35);
+    --maxw:1240px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Libre Franklin',-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.12;letter-spacing:-.005em}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+    padding:22px 0;
+  }
+  header.scrolled{
+    background:rgba(247,245,240,.92);
+    backdrop-filter:blur(14px);
+    box-shadow:0 1px 0 var(--line);
+    padding:14px 0;
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;gap:13px}
+  .logo-mark{
+    width:42px;height:42px;border-radius:50%;
+    display:grid;place-items:center;
+    border:1.5px solid var(--gold);
+    color:var(--gold);
+    font-family:'Playfair Display',serif;font-weight:700;font-size:20px;
+    flex-shrink:0;
+    transition:transform .4s ease;
+  }
+  .logo:hover .logo-mark{transform:rotate(-8deg)}
+  .logo-text{display:flex;flex-direction:column;line-height:1.05}
+  .logo-text .name{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:.02em}
+  .logo-text .sub{font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--slate);font-weight:600}
+  header.scrolled .logo-text .name,header.scrolled .logo-mark{color:var(--ink)}
+  header.scrolled .logo-mark{border-color:var(--ink)}
+
+  .menu{display:flex;align-items:center;gap:38px;list-style:none}
+  .menu a{
+    font-size:13.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+    color:var(--ink-soft);position:relative;padding:4px 0;
+  }
+  header:not(.scrolled) .menu a{color:rgba(255,255,255,.85)}
+  header:not(.scrolled) .logo-text .name{color:#fff}
+  header:not(.scrolled) .logo-text .sub{color:rgba(255,255,255,.6)}
+  header:not(.scrolled) .logo-mark{border-color:var(--gold-soft);color:var(--gold-soft)}
+  .menu a::after{
+    content:'';position:absolute;left:0;bottom:-2px;height:1.5px;width:0;
+    background:var(--gold);transition:width .3s ease;
+  }
+  .menu a:hover::after{width:100%}
+  .menu .cta{
+    background:var(--gold);color:#fff !important;padding:11px 22px;border-radius:2px;
+    letter-spacing:.06em;transition:background .3s ease,transform .3s ease;
+  }
+  .menu .cta::after{display:none}
+  .menu .cta:hover{background:var(--ink);transform:translateY(-1px)}
+
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:120}
+  .burger span{width:26px;height:2px;background:var(--ink);transition:.35s ease;border-radius:2px}
+  header:not(.scrolled) .burger span{background:#fff}
+  body.menu-open .burger span{background:var(--ink)}
+  body.menu-open .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  body.menu-open .burger span:nth-child(2){opacity:0}
+  body.menu-open .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  /* mobile drawer */
+  .drawer{
+    position:fixed;inset:0;background:var(--paper);z-index:110;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;
+    opacity:0;pointer-events:none;transition:opacity .4s ease;
+  }
+  body.menu-open .drawer{opacity:1;pointer-events:auto}
+  .drawer a{
+    font-family:'Playfair Display',serif;font-size:34px;font-weight:600;color:var(--ink);
+    padding:10px 0;opacity:0;transform:translateY(12px);transition:.5s ease;
+  }
+  body.menu-open .drawer a{opacity:1;transform:none}
+  body.menu-open .drawer a:nth-child(1){transition-delay:.08s}
+  body.menu-open .drawer a:nth-child(2){transition-delay:.14s}
+  body.menu-open .drawer a:nth-child(3){transition-delay:.20s}
+  body.menu-open .drawer a:nth-child(4){transition-delay:.26s}
+  body.menu-open .drawer a:nth-child(5){transition-delay:.32s}
+  .drawer .cta-m{margin-top:18px;background:var(--gold);color:#fff;font-family:'Libre Franklin';font-size:15px;
+    font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:15px 40px;border-radius:2px}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;
+    color:#fff;overflow:hidden;
+  }
+  .hero-bg{position:absolute;inset:0;z-index:-2}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(105deg,rgba(16,24,32,.92) 0%,rgba(16,24,32,.72) 45%,rgba(16,24,32,.35) 100%);
+  }
+  .hero-grain{position:absolute;inset:0;z-index:-1;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .hero-content{max-width:760px;padding:120px 0}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:14px;
+    font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;font-weight:600;
+    color:var(--gold-soft);margin-bottom:26px;
+    opacity:0;animation:rise .8s ease forwards .2s;
+  }
+  .eyebrow::before{content:'';width:42px;height:1px;background:var(--gold-soft)}
+  .hero h1{
+    font-size:clamp(44px,7vw,86px);margin-bottom:26px;color:#fff;
+    opacity:0;animation:rise .9s ease forwards .35s;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold-soft)}
+  .hero p{
+    font-size:clamp(16px,2vw,19px);color:rgba(255,255,255,.82);max-width:540px;
+    font-weight:300;margin-bottom:40px;
+    opacity:0;animation:rise .9s ease forwards .5s;
+  }
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:rise .9s ease forwards .65s}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:16px 34px;border-radius:2px;
+    font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    transition:transform .3s ease,background .3s ease,color .3s ease;
+  }
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-soft);transform:translateY(-2px)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.45);color:#fff}
+  .btn-ghost:hover{background:#fff;color:var(--ink);transform:translateY(-2px)}
+  @keyframes rise{to{opacity:1;transform:none}from{opacity:0;transform:translateY(22px)}}
+
+  .hero-stats{
+    position:absolute;bottom:0;left:0;right:0;
+    border-top:1px solid rgba(255,255,255,.14);
+    background:rgba(16,24,32,.4);backdrop-filter:blur(6px);
+  }
+  .hero-stats .wrap{display:flex;flex-wrap:wrap;gap:0}
+  .stat{flex:1;min-width:140px;padding:26px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.12)}
+  .stat:last-child{border-right:none}
+  .stat b{font-family:'Playfair Display',serif;font-size:38px;color:var(--gold-soft);display:block;line-height:1}
+  .stat span{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+
+  /* ===== PRACTICE / PLACEHOLDER SECTION ===== */
+  .section{padding:110px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 64px}
+  .sec-head .tag{font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .sec-head h2{font-size:clamp(34px,5vw,52px);margin:14px 0 16px}
+  .sec-head p{color:var(--slate);font-size:17px;font-weight:300}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .card{
+    background:var(--white);border:1px solid var(--line);padding:42px 34px;border-radius:3px;
+    transition:transform .4s ease,box-shadow .4s ease;position:relative;overflow:hidden;
+  }
+  .card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .card:hover::before{transform:scaleX(1)}
+  .card .num{font-family:'Playfair Display',serif;font-size:30px;color:var(--gold);font-weight:700}
+  .card h3{font-size:25px;margin:10px 0 12px}
+  .card p{color:var(--slate);font-size:15px;font-weight:300}
+  .card a.more{display:inline-block;margin-top:20px;font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+  .card a.more::after{content:' →';color:var(--gold)}
+
+  /* ===== FOOTER ===== */
+  .super-footer{background:var(--ink);color:rgba(255,255,255,.75);padding:80px 0 0}
+  .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.3fr;gap:48px;padding-bottom:60px}
+  .footer-brand .logo-mark{border-color:var(--gold-soft);color:var(--gold-soft);margin-bottom:18px}
+  .footer-brand .name{font-family:'Playfair Display',serif;font-size:26px;color:#fff;font-weight:700}
+  .footer-brand p{font-size:14px;font-weight:300;margin-top:14px;max-width:280px}
+  .footer-col h4{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:22px;font-weight:600}
+  .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .footer-col a{font-size:14.5px;font-weight:300;transition:color .25s ease}
+  .footer-col a:hover{color:#fff}
+  .footer-contact p{font-size:14.5px;font-weight:300;margin-bottom:14px;line-height:1.5}
+  .footer-contact b{color:#fff;font-weight:600}
+  .socials{display:flex;gap:12px;margin-top:8px}
+  .socials a{width:38px;height:38px;border:1px solid rgba(255,255,255,.22);border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;transition:.3s ease}
+  .socials a:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.12);padding:24px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:rgba(255,255,255,.5)}
+  .footer-bottom .links{display:flex;gap:24px}
+  .footer-bottom a:hover{color:#fff}
+
+  @media(max-width:860px){
+    .menu{display:none}
+    .burger{display:flex}
+    .cards{grid-template-columns:1fr;gap:18px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:36px}
+    .footer-brand{grid-column:1/-1}
+    .hero-content{padding:120px 0 100px}
+  }
+  @media(max-width:520px){
+    .footer-grid{grid-template-columns:1fr}
+    .footer-bottom{flex-direction:column;text-align:center}
+    .footer-bottom .links{justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#" class="logo">
+      <span class="logo-mark">W</span>
+      <span class="logo-text">
+        <span class="name">Whitlock &amp; Crane</span>
+        <span class="sub">Attorneys at Law</span>
+      </span>
+    </a>
+    <nav>
+      <ul class="menu">
+        <li><a href="#practice">Practice Areas</a></li>
+        <li><a href="#about">Firm</a></li>
+        <li><a href="#attorneys">Attorneys</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="cta">Free Consultation</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <a href="#practice">Practice Areas</a>
+  <a href="#about">Firm</a>
+  <a href="#attorneys">Attorneys</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="cta-m">Free Consultation</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=2000&q=80" alt="Law firm library">
+  </div>
+  <div class="hero-grain"></div>
+  <div class="wrap hero-content">
+    <span class="eyebrow">Trusted Counsel Since 1994</span>
+    <h1>Decisive advocacy<br>when it <em>matters most</em>.</h1>
+    <p>[Placeholder hero copy.] A boutique litigation and advisory firm representing individuals and businesses with discretion, rigor, and an unwavering commitment to results.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-gold">Schedule a Consultation</a>
+      <a href="#practice" class="btn btn-ghost">Our Practice Areas</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="wrap">
+      <div class="stat"><b>30+</b><span>Years Experience</span></div>
+      <div class="stat"><b>500+</b><span>Cases Resolved</span></div>
+      <div class="stat"><b>$50M+</b><span>Recovered</span></div>
+      <div class="stat"><b>98%</b><span>Client Retention</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICE AREAS -->
+<section class="section" id="practice">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">What We Do</span>
+      <h2>Practice Areas</h2>
+      <p>[Placeholder section description.] Focused expertise across the matters that most affect our clients' lives and livelihoods.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>Business Litigation</h3>
+        <p>[Placeholder.] Representing companies in contract disputes, partnership conflicts, and complex commercial matters.</p>
+        <a href="#" class="more">Learn More</a>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>Estate Planning</h3>
+        <p>[Placeholder.] Wills, trusts, and succession strategies designed to protect your legacy and your family.</p>
+        <a href="#" class="more">Learn More</a>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>Personal Injury</h3>
+        <p>[Placeholder.] Aggressive representation for victims of negligence, with no fee unless we win your case.</p>
+        <a href="#" class="more">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPER FOOTER -->
+<footer class="super-footer" id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-mark">W</span>
+        <div class="name">Whitlock &amp; Crane</div>
+        <p>[Placeholder tagline.] A boutique law firm delivering principled, results-driven representation to clients who expect more from their counsel.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Firm</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#attorneys">Our Attorneys</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">News &amp; Insights</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Practice</h4>
+        <ul>
+          <li><a href="#">Business Litigation</a></li>
+          <li><a href="#">Estate Planning</a></li>
+          <li><a href="#">Personal Injury</a></li>
+          <li><a href="#">Real Estate</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contact Us</h4>
+        <p><b>Office</b><br>123 Placeholder Ave, Suite 400<br>Las Vegas, NV 89101</p>
+        <p><b>Phone</b><br>(702) 555-0100</p>
+        <p><b>Email</b><br>intake@placeholder-law.com</p>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Twitter">X</a>
+          <a href="#" aria-label="Facebook">f</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Whitlock &amp; Crane LLP. All rights reserved.</span>
+      <div class="links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Disclaimer</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+  const burger = document.getElementById('burger');
+  const drawer = document.getElementById('drawer');
+  burger.addEventListener('click', () => document.body.classList.toggle('menu-open'));
+  drawer.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => document.body.classList.remove('menu-open'))
+  );
+</script>
+</body>
+</html>

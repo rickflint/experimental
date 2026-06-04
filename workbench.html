@@ -120,7 +120,7 @@
 
   /* ── LAYOUT ── */
   .shell {
-    max-width: 1000px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 0 2.5rem 5rem;
     position: relative;
@@ -200,7 +200,7 @@
     letter-spacing: -0.01em;
     margin-bottom: 1.6rem;
     color: #54e0ff;
-    background: linear-gradient(105deg, #54e0ff 0%, #5fa8ff 25%, #9d6bff 50%, #5fa8ff 75%, #54e0ff 100%);
+    background: linear-gradient(105deg, #54e0ff 0%, #5fa8ff 25%, #2c03a1 50%, #5fa8ff 75%, #54e0ff 100%);
     background-size: 250% 100%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -224,8 +224,8 @@
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100vw - 20px);   /* full width minus 10px each side */
-    max-width: 1440px;            /* stop growing past 1440px */
+    /* width: calc(100vw - 80px);   removed since .shell is parent style for width */
+    /* max-width: 924px;            stop growing past 1440px */
     border: 1px solid var(--border-hi);
     border-radius: 8px;
     background: linear-gradient(160deg, rgba(4,14,38,0.92), rgba(8,24,64,0.85));

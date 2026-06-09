@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escobar Handyman — Wireframe</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f0f0;
+    color: #222;
+  }
+
+  /* ── WIREFRAME TOKENS ── */
+  :root {
+    --border: #aaa;
+    --fill-light: #e4e4e4;
+    --fill-mid: #d0d0d0;
+    --fill-dark: #b0b0b0;
+    --fill-darker: #888;
+    --text-dim: #999;
+    --text-label: #555;
+    --radius: 2px;
+    --annotation: #999;
+  }
+
+  /* ── ANNOTATION LABEL ── */
+  .label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--annotation);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  /* ── SHARED BLOCK ── */
+  .block {
+    background: var(--fill-light);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .block-dark {
+    background: var(--fill-dark);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .block-darker {
+    background: var(--fill-darker);
+    border: 1.5px solid #666;
+    border-radius: var(--radius);
+  }
+
+  /* ── IMAGE PLACEHOLDER ── */
+  .img-placeholder {
+    background: var(--fill-mid);
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .img-placeholder svg { opacity: 0.35; }
+
+  /* ── TEXT LINES ── */
+  .line {
+    height: 10px;
+    background: var(--fill-dark);
+    border-radius: 2px;
+    margin-bottom: 6px;
+  }
+  .line.short  { width: 40%; }
+  .line.medium { width: 65%; }
+  .line.long   { width: 90%; }
+  .line.full   { width: 100%; }
+  .line.title  { height: 22px; width: 75%; background: var(--fill-darker); margin-bottom: 10px; }
+  .line.title-lg { height: 32px; width: 85%; background: var(--fill-darker); margin-bottom: 10px; }
+
+  /* ── BTN PLACEHOLDER ── */
+  .btn-wf {
+    display: inline-block;
+    height: 36px;
+    border-radius: var(--radius);
+    background: var(--fill-darker);
+    border: 1.5px solid #666;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f0f0f0;
+    padding: 0 20px;
+    line-height: 36px;
+    white-space: nowrap;
+  }
+  .btn-wf.outline {
+    background: transparent;
+    color: var(--text-label);
+    border-color: var(--border);
+  }
+
+  /* ═══════════════════════════════
+     LAYOUT
+  ═══════════════════════════════ */
+
+  /* TOP BAR */
+  .wf-topbar {
+    background: var(--fill-darker);
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border-bottom: 1.5px solid #666;
+    padding: 0 40px;
+  }
+  .wf-topbar span {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ddd;
+  }
+  .wf-topbar span.hi { color: #fff; }
+
+  /* NAV */
+  .wf-nav {
+    background: var(--fill-dark);
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .nav-logo-wf {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #333;
+  }
+  .nav-links-wf {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links-wf li {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-label);
+  }
+  .nav-links-wf li.cta-pill {
+    background: var(--fill-darker);
+    color: #eee;
+    padding: 4px 12px;
+    border-radius: 2px;
+    font-size: 9px;
+  }
+
+  /* HERO */
+  .wf-hero {
+    background: var(--fill-mid);
+    border-bottom: 1.5px solid var(--border);
+    padding: 60px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    min-height: 380px;
+  }
+  .hero-left { display: flex; flex-direction: column; gap: 12px; }
+  .hero-eyebrow-wf {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-eyebrow-wf::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1.5px;
+    background: var(--border);
+  }
+  .hero-h1 {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #444;
+    letter-spacing: 0.01em;
+  }
+  .hero-h1 .accent { color: #888; }
+  .hero-sub {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .hero-desc-lines { margin-top: 4px; }
+  .hero-btns { display: flex; gap: 10px; margin-top: 6px; }
+  .hero-phone-wf {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .phone-circle {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--fill-darker);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .phone-text .ph-label {
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: block;
+  }
+  .phone-text .ph-num {
+    font-size: 18px;
+    font-weight: 700;
+    color: #555;
+    letter-spacing: 0.04em;
+  }
+
+  /* TRUST BAR */
+  .wf-trust {
+    background: var(--fill-darker);
+    border-bottom: 1.5px solid #666;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  .trust-item-wf {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .trust-icon-wf {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .trust-text-wf strong {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #eee;
+  }
+  .trust-text-wf span {
+    font-size: 8px;
+    color: #bbb;
+    letter-spacing: 0.06em;
+  }
+
+  /* ABOUT */
+  .wf-about {
+    padding: 70px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    background: #f5f5f5;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .about-img-wrap { position: relative; }
+  .about-img-shadow {
+    position: absolute;
+    inset: 12px 0 -12px 12px;
+    background: var(--fill-dark);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    z-index: 0;
+  }
+  .about-img-box {
+    position: relative;
+    z-index: 1;
+  }
+  .about-stats-wf {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .stat-wf {
+    border-left: 3px solid var(--fill-darker);
+    padding-left: 12px;
+  }
+  .stat-num { font-size: 22px; font-weight: 700; color: #777; }
+  .stat-lbl { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); }
+
+  /* SERVICES */
+  .wf-services {
+    background: var(--fill-mid);
+    padding: 70px 40px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .services-flyer-wf {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .svc-list-header-wf {
+    background: var(--fill-darker);
+    color: #eee;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ideal-header-wf {
+    background: #888;
+    color: #eee;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .svc-two-col-wf {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #ddd;
+    border: 1.5px solid var(--border);
+    border-top: none;
+  }
+  .svc-col-wf {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-right: 1px solid var(--border);
+  }
+  .svc-col-wf:last-child { border-right: none; }
+  .svc-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  .svc-row:last-child { border-bottom: none; }
+  .svc-check {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--fill-darker);
+    flex-shrink: 0;
+  }
+  .svc-row-line {
+    flex: 1;
+    height: 8px;
+    background: #bbb;
+    border-radius: 2px;
+  }
+  .svc-row-line.short { flex: 0 0 55%; }
+  .ideal-list-wf {
+    background: #ddd;
+    border: 1.5px solid var(--border);
+    border-top: none;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .ideal-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 9px;
+    color: #555;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .ideal-row:last-child { border-bottom: none; }
+  .ideal-icon-wf { font-size: 16px; }
+
+  /* WHY US */
+  .wf-why {
+    background: #f5f5f5;
+    padding: 70px 40px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .why-inner-wf {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 32px;
+  }
+  .why-item-wf {
+    display: flex;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .why-item-wf:last-child { border-bottom: none; }
+  .why-num-wf {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ccc;
+    min-width: 40px;
+    text-align: right;
+    line-height: 1;
+  }
+  .why-item-text-wf { flex: 1; }
+  .why-card-wf {
+    background: var(--fill-dark);
+    border: 1.5px solid var(--border);
+    padding: 32px 28px;
+  }
+  .quote-mark { font-size: 48px; font-weight: 700; color: #ccc; line-height: 0.8; margin-bottom: 12px; }
+  .quote-lines { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .cite-line {
+    height: 8px;
+    background: var(--fill-darker);
+    border-radius: 2px;
+    width: 45%;
+  }
+
+  /* CTA BAND */
+  .wf-cta {
+    background: var(--fill-darker);
+    padding: 60px 40px;
+    text-align: center;
+    border-bottom: 1.5px solid #666;
+  }
+  .cta-h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #eee;
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+  .cta-sub {
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: 0.06em;
+    margin-bottom: 24px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .cta-phone-wf {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ddd;
+    letter-spacing: 0.06em;
+    margin-top: 14px;
+  }
+
+  /* CONTACT */
+  .wf-contact {
+    padding: 70px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    background: #f5f5f5;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .contact-item-wf {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .contact-icon-wf {
+    width: 36px; height: 36px;
+    background: var(--fill-dark);
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .contact-form-wf {
+    background: #e8e8e8;
+    border: 1.5px solid var(--border);
+    border-top: 4px solid var(--fill-darker);
+    padding: 32px 28px;
+  }
+  .form-field-wf {
+    height: 36px;
+    background: #d8d8d8;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    width: 100%;
+  }
+  .form-field-wf.textarea { height: 80px; }
+  .form-row-wf { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* FOOTER */
+  .wf-footer {
+    background: var(--fill-dark);
+    padding: 48px 40px 24px;
+    border-top: 1.5px solid var(--border);
+  }
+  .footer-grid-wf {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+  .footer-link-wf {
+    height: 8px;
+    background: #aaa;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+  .footer-link-wf.short { width: 55%; }
+  .footer-link-wf.med { width: 75%; }
+  .footer-bottom-wf {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom-wf span {
+    font-size: 9px;
+    color: #888;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* SECTION HEADER helper */
+  .wf-section-header { margin-bottom: 8px; }
+  .wf-section-eyebrow {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .wf-section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 30px; height: 1px;
+    background: var(--border);
+  }
+  .wf-section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #555;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .wf-section-body {
+    font-size: 9px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    max-width: 480px;
+    letter-spacing: 0.03em;
+  }
+
+  /* PAGE WRAPPER */
+  .page { max-width: 1100px; margin: 0 auto; box-shadow: 0 0 40px rgba(0,0,0,0.15); overflow-x: hidden; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 720px) {
+    body { overflow-x: hidden; }
+
+    .wf-topbar { padding: 0 16px; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .wf-nav { padding: 0 16px; }
+    .nav-links-wf { display: none; }
+
+    .wf-hero { grid-template-columns: 1fr; padding: 32px 16px; gap: 24px; min-height: unset; }
+    .hero-h1 { font-size: 20px; }
+    .hero-btns { flex-wrap: wrap; }
+    .ph-num { font-size: 14px; }
+
+    .wf-trust { padding: 16px; gap: 20px; flex-direction: column; align-items: flex-start; }
+
+    .wf-about { grid-template-columns: 1fr; padding: 40px 16px; gap: 32px; }
+    .about-stats-wf { grid-template-columns: 1fr 1fr; }
+
+    .wf-services { padding: 40px 16px; }
+    .services-flyer-wf { grid-template-columns: 1fr; }
+    .svc-two-col-wf { grid-template-columns: 1fr; }
+    .svc-col-wf:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+
+    .wf-why { padding: 40px 16px; }
+    .why-inner-wf { grid-template-columns: 1fr; gap: 32px; }
+
+    .wf-cta { padding: 40px 16px; }
+    .cta-h2 { font-size: 16px; }
+
+    .wf-contact { grid-template-columns: 1fr; padding: 40px 16px; gap: 32px; }
+    .form-row-wf { grid-template-columns: 1fr; }
+
+    .wf-footer { padding: 32px 16px 20px; }
+    .footer-grid-wf { grid-template-columns: 1fr; gap: 24px; }
+    .footer-bottom-wf { flex-direction: column; gap: 6px; text-align: center; }
+
+    .wf-section-title { font-size: 18px; }
+    .wf-section-body { max-width: 100%; }
+    .btn-wf { font-size: 8px; padding: 0 14px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TOP BAR -->
+  <div class="wf-topbar">
+    <span>Licensed &amp; Insured · Las Vegas, NV</span>
+    <span>|</span>
+    <span class="hi">Call Now: 702-201-4848</span>
+  </div>
+
+  <!-- NAV -->
+  <nav class="wf-nav">
+    <div class="nav-logo-wf">Wireframe for Escobar Handyman Website. DEV: Rick Flint</div>
+    <ul class="nav-links-wf">
+      <li>About</li>
+      <li>Services</li>
+      <li>Why Us</li>
+      <li>Contact</li>
+      <li class="cta-pill">702-201-4848</li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="wf-hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow-wf">Las Vegas, NV · Home Services</div>
+      <div class="hero-h1">
+        Reliable Handyman<br>Services for<br><span class="accent">Property Owners</span>
+      </div>
+      <div class="hero-sub">Escobar Handyman Home Services LLC</div>
+      <div class="hero-desc-lines">
+        <div class="line long"></div>
+        <div class="line medium"></div>
+      </div>
+      <div class="hero-btns">
+        <div class="btn-wf">Get a Free Quote</div>
+        <div class="btn-wf outline">Our Services</div>
+      </div>
+      <div class="hero-phone-wf">
+        <div class="phone-circle">tel</div>
+        <!-- <div class="phone-circle">📞</div> -->
+        <div class="phone-text">
+          <span class="ph-label">Call Rhyan Directly</span>
+          <span class="ph-num">702 201 4848</span>
+        </div>
+      </div>
+    </div>
+    <div class="img-placeholder" style="height:300px; border-radius:2px;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      <span>Logo / Hero Image</span>
+    </div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="wf-trust">
+    <div class="trust-item-wf">
+      <div class="trust-icon-wf">icon</div>
+      <!-- <div class="trust-icon-wf">👨‍👩‍👧</div> -->
+      <div class="trust-text-wf">
+        <strong>Family Owned &amp; Operated</strong>
+        <span>Locally Based in Las Vegas</span>
+      </div>
+    </div>
+    <div class="trust-item-wf">
+      <!-- <div class="trust-icon-wf">⚡</div> -->
+      <div class="trust-icon-wf">icon</div>
+      <div class="trust-text-wf">
+        <strong>Prompt &amp; Professional</strong>
+        <span>We Show Up On Time</span>
+      </div>
+    </div>
+    <div class="trust-item-wf">
+      <div class="trust-icon-wf">icon</div>
+      <!-- <div class="trust-icon-wf">🏅</div> -->
+      <div class="trust-text-wf">
+        <strong>Quality Work at Fair Prices</strong>
+        <span>No Hidden Fees</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="wf-about">
+    <div class="about-img-wrap">
+      <div class="about-img-shadow"></div>
+      <div class="about-img-box">
+        <div class="img-placeholder" style="height:260px;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <span>Photo of Rhyan or related image</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="wf-section-header">
+        <div class="wf-section-eyebrow">About Rhyan Handy</div>
+        <div class="wf-section-title">Your Neighbor.<br>Your Handyman.</div>
+        <p class="wf-section-body">Rhyan Handy built Escobar Handyman Home Services LLC on one simple idea: every homeowner deserves a reliable, skilled professional they can actually trust.</p>
+      </div>
+      <div class="about-stats-wf">
+        <div class="stat-wf"><div class="stat-num">10+</div><div class="stat-lbl">Years Experience</div></div>
+        <div class="stat-wf"><div class="stat-num">500+</div><div class="stat-lbl">Jobs Completed</div></div>
+        <div class="stat-wf"><div class="stat-num">100%</div><div class="stat-lbl">Licensed &amp; Insured</div></div>
+        <div class="stat-wf"><div class="stat-num">LV</div><div class="stat-lbl">Las Vegas Native</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="wf-services">
+    <div class="wf-section-eyebrow">What We Do</div>
+    <div class="wf-section-title" style="color:#444;">Services for Property Owners</div>
+    <p class="wf-section-body">From rental turnovers to everyday maintenance — promptly, professionally, at fair prices.</p>
+
+    <div class="services-flyer-wf">
+      <div>
+        <div class="svc-list-header-wf">🔧 Services for Property Owners</div>
+        <div class="svc-two-col-wf">
+          <div class="svc-col-wf">
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line short"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line short"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line short"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line short"></div></div>
+          </div>
+          <div class="svc-col-wf">
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line short"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line short"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line short"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line"></div></div>
+            <div class="svc-row"><div class="svc-check"></div><div class="svc-row-line short"></div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="ideal-header-wf">🏢 Ideal For</div>
+        <div class="ideal-list-wf">
+          <div class="ideal-row"><span class="ideal-icon-wf">icon</span>Rental properties</div>
+          <div class="ideal-row"><span class="ideal-icon-wf">icon</span>Offices and small commercial spaces</div>
+          <div class="ideal-row"><span class="ideal-icon-wf">icon</span>Salons and retail suites</div>
+          <div class="ideal-row"><span class="ideal-icon-wf">icon</span>Homeowners and landlords</div>
+          <div class="ideal-row"><span class="ideal-icon-wf">icon</span>Property turnovers and maintenance lists</div>
+          <!-- <div class="ideal-row"><span class="ideal-icon-wf">🏠</span>Rental properties</div>
+          <div class="ideal-row"><span class="ideal-icon-wf">🏢</span>Offices and small commercial spaces</div>
+          <div class="ideal-row"><span class="ideal-icon-wf">💈</span>Salons and retail suites</div>
+          <div class="ideal-row"><span class="ideal-icon-wf">👥</span>Homeowners and landlords</div>
+          <div class="ideal-row"><span class="ideal-icon-wf">📋</span>Property turnovers and maintenance lists</div> -->
+        </div>
+        <div style="margin-top:16px;"><div class="btn-wf">Get a Free Quote</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY US -->
+  <div class="wf-why">
+    <div class="wf-section-eyebrow">The Difference</div>
+    <div class="wf-section-title">Why Homeowners Choose Rhyan</div>
+    <div class="why-inner-wf">
+      <div>
+        <div class="why-item-wf">
+          <div class="why-num-wf">01</div>
+          <div class="why-item-text-wf">
+            <div class="line title" style="width:60%; height:14px; margin-bottom:6px;"></div>
+            <div class="line long"></div><div class="line medium"></div>
+          </div>
+        </div>
+        <div class="why-item-wf">
+          <div class="why-num-wf">02</div>
+          <div class="why-item-text-wf">
+            <div class="line title" style="width:50%; height:14px; margin-bottom:6px;"></div>
+            <div class="line long"></div><div class="line medium"></div>
+          </div>
+        </div>
+        <div class="why-item-wf">
+          <div class="why-num-wf">03</div>
+          <div class="why-item-text-wf">
+            <div class="line title" style="width:55%; height:14px; margin-bottom:6px;"></div>
+            <div class="line long"></div><div class="line medium"></div>
+          </div>
+        </div>
+        <div class="why-item-wf">
+          <div class="why-num-wf">04</div>
+          <div class="why-item-text-wf">
+            <div class="line title" style="width:48%; height:14px; margin-bottom:6px;"></div>
+            <div class="line long"></div><div class="line medium"></div>
+          </div>
+        </div>
+      </div>
+      <div class="why-card-wf">
+        <div class="quote-mark">"</div>
+        <div class="quote-lines">
+          <div class="line full"></div>
+          <div class="line full"></div>
+          <div class="line long"></div>
+          <div class="line medium"></div>
+        </div>
+        <div class="cite-line"></div>
+        <div style="margin-top:24px;">
+          <div class="line title" style="width:55%; height:18px; margin-bottom:4px;"></div>
+          <div class="line short" style="height:8px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="wf-cta">
+    <div class="cta-h2">Need Reliable Help With Repairs and Maintenance?</div>
+    <div class="cta-sub">Contact Escobar Handyman Home Services LLC today for a free, no-obligation quote. Fair prices. Honest work.</div>
+    <div class="btn-wf" style="background:#fff; color:#555; border-color:#ccc;">Request a Free Quote</div>
+    <div class="cta-phone-wf">tel 702 201 4848</div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="wf-contact">
+    <div>
+      <div class="wf-section-eyebrow">Get In Touch</div>
+      <div class="wf-section-title">Let's Talk<br>About Your Project</div>
+      <p class="wf-section-body" style="margin-bottom:24px;">Fill out the form, or just give Rhyan a call. We'll get back to you fast with a free estimate.</p>
+      <div class="contact-item-wf">
+        <div class="contact-icon-wf">tel</div>
+        <!-- <div class="contact-icon-wf">📞</div> -->
+        <div>
+          <div class="line short" style="height:7px; margin-bottom:4px;"></div>
+          <div style="font-size:11px; font-weight:700; color:#444;">702-201-4848</div>
+        </div>
+      </div>
+      <div class="contact-item-wf">
+        <div class="contact-icon-wf">✉️</div>
+        <div>
+          <div class="line short" style="height:7px; margin-bottom:4px;"></div>
+          <div style="font-size:10px; font-weight:600; color:#555;">Handyman@escobarhandymanservices.com</div>
+        </div>
+      </div>
+      <div class="contact-item-wf">
+        <div class="contact-icon-wf">📍</div>
+        <div>
+          <div class="line short" style="height:7px; margin-bottom:4px;"></div>
+          <div style="font-size:11px; font-weight:700; color:#444;">Las Vegas, NV &amp; Surrounding Areas</div>
+        </div>
+      </div>
+      <div class="contact-item-wf">
+        <div class="contact-icon-wf">🕐</div>
+        <div>
+          <div class="line short" style="height:7px; margin-bottom:4px;"></div>
+          <div style="font-size:11px; font-weight:700; color:#444;">Mon–Sat: 7:00 AM – 7:00 PM</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wf">
+      <div class="line title" style="width:60%; margin-bottom:20px;"></div>
+      <div class="form-row-wf" style="margin-bottom:0;">
+        <div><div class="line short" style="height:7px; margin-bottom:4px;"></div><div class="form-field-wf"></div></div>
+        <div><div class="line short" style="height:7px; margin-bottom:4px;"></div><div class="form-field-wf"></div></div>
+      </div>
+      <div class="line short" style="height:7px; margin-bottom:4px; margin-top:2px;"></div><div class="form-field-wf"></div>
+      <div class="line short" style="height:7px; margin-bottom:4px;"></div><div class="form-field-wf"></div>
+      <div class="line short" style="height:7px; margin-bottom:4px;"></div><div class="form-field-wf"></div>
+      <div class="line short" style="height:7px; margin-bottom:4px;"></div><div class="form-field-wf textarea"></div>
+      <div class="btn-wf" style="width:100%; text-align:center; display:block; line-height:40px; height:40px;">Submit Request</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="wf-footer">
+    <div class="footer-grid-wf">
+      <div>
+        <div class="line title" style="width:50%; margin-bottom:4px;"></div>
+        <div class="line short" style="height:7px; margin-bottom:12px;"></div>
+        <div class="line long"></div>
+        <div class="line medium"></div>
+        <div class="line long"></div>
+      </div>
+      <div>
+        <div class="line short" style="height:7px; margin-bottom:14px;"></div>
+        <div class="footer-link-wf short"></div>
+        <div class="footer-link-wf med"></div>
+        <div class="footer-link-wf short"></div>
+        <div class="footer-link-wf med"></div>
+        <div class="footer-link-wf short"></div>
+      </div>
+      <div>
+        <div class="line short" style="height:7px; margin-bottom:14px;"></div>
+        <div class="footer-link-wf short"></div>
+        <div class="footer-link-wf med"></div>
+        <div class="footer-link-wf short"></div>
+        <div class="footer-link-wf med"></div>
+      </div>
+    </div>
+    <div class="footer-bottom-wf">
+      <span>© 2025 Escobar Handyman Home Services LLC · Las Vegas, NV</span>
+      <span>⚒ Fair Prices. Honest Work. ⚒</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

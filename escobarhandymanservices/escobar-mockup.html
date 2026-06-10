@@ -6,6 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Escobar Handyman — MOCKUP v0.1</title>
 <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -549,8 +550,9 @@
 
 <!-- STATUS BAR -->
 <div class="status-bar">
-  <span>📁 escobar-handyman/ <strong>mockup-v0.1.html</strong></span>
-  <span>STATUS: <strong>EARLY DRAFT</strong> · Not for client delivery · Last updated: 2025</span>
+  <span>📁 escobar-handyman/ <strong>mockup-v0.1.html </strong>DEV: cptdreadflint</span>
+  <span>STATUS: <strong>EARLY DRAFT</strong> <span style="color: rgb(248, 34, 34); font-weight: bold;">
+  · Not for client delivery · </span>Last updated: <span id="current-date" style="color: #0f0;"></span></span>
 </div>
 
 <!-- LEGEND -->
@@ -927,6 +929,9 @@
   <span class="note note-todo">Add social media links to footer once client provides profiles (Facebook, Google Business, Yelp, Instagram).</span>
   <span class="note note-dev">© year should be dynamic: use JS — document.write(new Date().getFullYear()) — or update manually each Jan.</span>
 </div>
-
+<script>
+  document.getElementById('current-date').innerHTML = 
+    new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+</script>
 </body>
 </html>

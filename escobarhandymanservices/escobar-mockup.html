@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Escobar Handyman — MOCKUP v0.1</title>
+<link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff;
+    color: #000;
+    font-size: 14px;
+    overflow-x: hidden;
+  }
+
+  a { color: #00c; text-decoration: underline; }
+  a:visited { color: #551a8b; }
+
+  /* ── DEV / DESIGNER NOTE SYSTEM ── */
+  .note {
+    display: block;
+    margin: 6px 0;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    border-left: 3px solid;
+    line-height: 1.5;
+  }
+  .note-dev {
+    background: #fffde6;
+    border-color: #f0c000;
+    color: #5a4000;
+  }
+  .note-design {
+    background: #e8f4fd;
+    border-color: #2980b9;
+    color: #0a3a5e;
+  }
+  .note-content {
+    background: #edfaed;
+    border-color: #27ae60;
+    color: #0e3d1e;
+  }
+  .note-todo {
+    background: #fdecea;
+    border-color: #c0392b;
+    color: #5a0a00;
+  }
+  .note::before {
+    font-weight: bold;
+    margin-right: 6px;
+  }
+  .note-dev::before    { content: '[DEV]'; }
+  .note-design::before { content: '[DESIGN]'; }
+  .note-content::before{ content: '[COPY]'; }
+  .note-todo::before   { content: '[TODO]'; }
+
+  /* Note legend */
+  .note-legend {
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 10px 16px;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .note-legend strong { margin-right: 8px; font-size: 11px; }
+  .legend-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section-wrap {
+    border: 1.5px dashed #aaa;
+    margin: 0;
+    position: relative;
+  }
+  .section-label-tag {
+    position: absolute;
+    top: -1px; left: -1px;
+    background: #555;
+    color: #fff;
+    font-size: 9px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    z-index: 10;
+  }
+
+  /* ── IMG PLACEHOLDER ── */
+  .img-ph {
+    background: #e0e0e0;
+    border: 1px solid #bbb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    gap: 6px;
+    text-align: center;
+    padding: 12px;
+  }
+  .img-ph svg { opacity: 0.4; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: #ddd;
+    border-bottom: 1px solid #aaa;
+    padding: 6px 16px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: #f4f4f4;
+    border-bottom: 2px solid #999;
+    padding: 0 20px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo-mk {
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    letter-spacing: 0.02em;
+  }
+  .nav-links-mk {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+  .nav-links-mk a {
+    font-size: 13px;
+    color: #00c;
+    text-decoration: none;
+  }
+  .nav-links-mk a:hover { text-decoration: underline; }
+  .nav-links-mk .cta {
+    background: #ddd;
+    border: 1px solid #aaa;
+    padding: 3px 10px;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+
+  /* ── HERO ── */
+  .hero-mk {
+    background: #ececec;
+    border-bottom: 1px solid #ccc;
+    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .hero-eyebrow-mk {
+    font-size: 11px;
+    color: #666;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .hero-h1-mk {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: #111;
+  }
+  .hero-sub-mk {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .hero-desc-mk {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    max-width: 420px;
+  }
+  .btn-mk {
+    display: inline-block;
+    background: #ddd;
+    border: 1px solid #999;
+    padding: 7px 18px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  .btn-mk.primary { background: #c0c0c0; border-color: #666; }
+  .hero-phone-mk {
+    margin-top: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+  }
+  .hero-phone-mk span {
+    display: block;
+    font-size: 10px;
+    font-weight: normal;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2px;
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-mk {
+    background: #ddd;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .trust-item-mk {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+  }
+  .trust-item-mk span { font-size: 11px; font-weight: normal; color: #666; display: block; }
+
+  /* ── SECTIONS ── */
+  .content-section {
+    padding: 40px 20px;
+    border-bottom: 1px solid #ddd;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-eyebrow-mk {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  h2.section-h2-mk {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .section-p-mk {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 20px;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .about-stats-mk {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .stat-mk {
+    border-left: 3px solid #aaa;
+    padding-left: 12px;
+  }
+  .stat-num-mk { font-size: 22px; font-weight: bold; color: #444; }
+  .stat-lbl-mk { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* ── SERVICES ── */
+  .services-full { background: #f7f7f7; padding: 40px 20px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+  .services-inner-mk { max-width: 1100px; margin: 0 auto; }
+  .svc-grid-mk {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .svc-header-mk {
+    background: #ddd;
+    border: 1px solid #bbb;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #333;
+  }
+  .svc-two-col-mk {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: #fff;
+  }
+  .svc-col-mk {
+    padding: 10px 14px;
+    border-right: 1px solid #ddd;
+  }
+  .svc-col-mk:last-child { border-right: none; }
+  .svc-col-mk li {
+    font-size: 12px;
+    color: #333;
+    padding: 4px 0 4px 14px;
+    border-bottom: 1px solid #f0f0f0;
+    list-style: none;
+    position: relative;
+  }
+  .svc-col-mk li::before { content: '✔'; position: absolute; left: 0; color: #888; font-size: 10px; top: 5px; }
+  .svc-col-mk li:last-child { border-bottom: none; }
+  .ideal-header-mk {
+    background: #ccc;
+    border: 1px solid #bbb;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #333;
+  }
+  .ideal-list-mk {
+    border: 1px solid #ccc;
+    border-top: none;
+    background: #fff;
+    padding: 8px 14px;
+    list-style: none;
+  }
+  .ideal-list-mk li {
+    font-size: 12px;
+    color: #333;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ideal-list-mk li:last-child { border-bottom: none; }
+
+  /* ── WHY ── */
+  .why-grid-mk {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: start;
+    margin-top: 20px;
+  }
+  .why-item-mk {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+    align-items: flex-start;
+  }
+  .why-item-mk:last-child { border-bottom: none; }
+  .why-num-mk { font-size: 24px; font-weight: bold; color: #ccc; min-width: 36px; text-align: right; }
+  .why-item-mk h4 { font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+  .why-item-mk p { font-size: 12px; color: #555; line-height: 1.6; }
+  .why-card-mk {
+    background: #eee;
+    border: 1px solid #ccc;
+    padding: 24px 20px;
+  }
+  .why-card-mk blockquote {
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    border-left: 3px solid #aaa;
+    padding-left: 12px;
+  }
+  .why-card-mk cite { font-size: 11px; color: #777; font-style: normal; }
+  .why-card-mk .owner-name { font-size: 16px; font-weight: bold; margin-top: 16px; color: #222; }
+  .why-card-mk .owner-title { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* ── CTA BAND ── */
+  .cta-band-mk {
+    background: #ddd;
+    border-top: 2px solid #aaa;
+    border-bottom: 2px solid #aaa;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .cta-band-mk h2 { font-size: 22px; font-weight: bold; margin-bottom: 8px; }
+  .cta-band-mk p { font-size: 13px; color: #555; margin-bottom: 20px; }
+  .cta-band-mk .cta-phone-mk { font-size: 22px; font-weight: bold; margin-top: 12px; display: block; color: #000; text-decoration: none; }
+
+  /* ── CONTACT ── */
+  .contact-grid-mk {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .contact-item-mk {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .contact-icon-mk {
+    width: 32px; height: 32px;
+    background: #ddd;
+    border: 1px solid #bbb;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .contact-item-mk strong { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; }
+  .contact-item-mk a, .contact-item-mk span { font-size: 13px; font-weight: bold; color: #000; text-decoration: none; }
+  .contact-form-mk {
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    border-top: 3px solid #888;
+    padding: 24px 20px;
+  }
+  .contact-form-mk h3 { font-size: 16px; font-weight: bold; margin-bottom: 16px; }
+  .form-row-mk { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form-group-mk { margin-bottom: 12px; }
+  .form-group-mk label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 4px; }
+  .form-group-mk input,
+  .form-group-mk select,
+  .form-group-mk textarea {
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #bbb;
+    background: #fff;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    outline: none;
+  }
+  .form-group-mk textarea { min-height: 80px; resize: vertical; }
+  .submit-btn-mk {
+    width: 100%;
+    background: #ccc;
+    border: 1px solid #999;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+  }
+  .submit-btn-mk:hover { background: #bbb; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #e8e8e8;
+    border-top: 2px solid #aaa;
+    padding: 32px 20px 16px;
+  }
+  .footer-grid-mk {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 16px;
+  }
+  .footer-brand-mk .name { font-size: 16px; font-weight: bold; margin-bottom: 4px; }
+  .footer-brand-mk .tagline { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #777; margin-bottom: 10px; }
+  .footer-brand-mk p { font-size: 12px; color: #555; line-height: 1.6; }
+  .footer-col-mk h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: #888; margin-bottom: 12px; font-weight: bold; }
+  .footer-col-mk ul { list-style: none; }
+  .footer-col-mk ul li { margin-bottom: 6px; }
+  .footer-col-mk ul li a { font-size: 12px; color: #00c; text-decoration: underline; }
+  .footer-bottom-mk {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #888;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* ── STATUS BAR ── */
+  .status-bar {
+    background: #222;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    padding: 6px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  .status-bar span { opacity: 0.7; }
+  .status-bar strong { color: #ff0; opacity: 1; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .hero-mk { grid-template-columns: 1fr; gap: 24px; padding: 24px 16px; }
+    .about-grid, .why-grid-mk, .contact-grid-mk, .footer-grid-mk { grid-template-columns: 1fr; gap: 24px; }
+    .svc-grid-mk { grid-template-columns: 1fr; }
+    .svc-two-col-mk { grid-template-columns: 1fr; }
+    .form-row-mk { grid-template-columns: 1fr; }
+    .trust-mk { gap: 20px; flex-direction: column; padding: 14px 16px; }
+    .content-section { padding: 30px 16px; }
+    .services-full { padding: 30px 16px; }
+    nav { padding: 0 16px; }
+    .nav-links-mk { display: none; }
+    body, html { overflow-x: hidden; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <span>📁 escobar-handyman/ <strong>mockup-v0.1.html</strong></span>
+  <span>STATUS: <strong>EARLY DRAFT</strong> · Not for client delivery · Last updated: 2025</span>
+</div>
+
+<!-- LEGEND -->
+<div class="note-legend">
+  <strong>NOTE KEY:</strong>
+  <span><span class="legend-dot" style="background:#f0c000;"></span>[DEV] Developer notes</span>
+  <span><span class="legend-dot" style="background:#2980b9;"></span>[DESIGN] Designer notes</span>
+  <span><span class="legend-dot" style="background:#27ae60;"></span>[COPY] Copywriting notes</span>
+  <span><span class="legend-dot" style="background:#c0392b;"></span>[TODO] Action items</span>
+</div>
+
+<span class="note note-dev">Colors are placeholder only — final palette TBD. Referencing Escobar logo: deep purple #4a1d8a, red #c0392b, white, gold #d4a017.</span>
+<span class="note note-design">Typography shortlist: Bebas Neue (headings), Oswald (subheads/nav), Lato (body). Google Fonts — confirm with client.</span>
+<span class="note note-todo">Get client sign-off on section order and content before styling pass begins.</span>
+
+
+<!-- ════════════════════════════════
+  TOP BAR
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: topbar</span>
+  <div class="topbar">
+    Licensed &amp; Insured · Las Vegas, NV &nbsp;|&nbsp; Call Now: <a href="tel:7022014848">702-201-4848</a>
+  </div>
+  <span class="note note-design">Thin utility bar. Will use brand dark purple bg + gold link color in final. Keep text tight — 1 line.</span>
+</div>
+
+
+<!-- ════════════════════════════════
+  NAV
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: navigation</span>
+  <nav>
+    <div class="nav-logo-mk">Escobar Handyman</div>
+    <ul class="nav-links-mk">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="tel:7022014848" class="cta">702-201-4848</a></li>
+    </ul>
+  </nav>
+  <span class="note note-dev">Nav is sticky. Hamburger menu needed for mobile — slide-out drawer from right, dim overlay on left. See mobile nav spec.</span>
+  <span class="note note-design">Logo area: text-only for now. Will replace with SVG logo lockup once asset is finalized. Phone CTA button in nav — accent color.</span>
+</div>
+
+
+<!-- ════════════════════════════════
+  HERO
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: hero</span>
+  <div class="hero-mk">
+    <div>
+      <div class="hero-eyebrow-mk">Las Vegas, NV · Home Services</div>
+      <h1 class="hero-h1-mk">Reliable Handyman<br>Services for<br>Property Owners</h1>
+      <div class="hero-sub-mk">Escobar Handyman Home Services LLC</div>
+      <p class="hero-desc-mk">Dependable help for rentals, turnovers, punch lists, and everyday property maintenance.</p>
+      <a href="#contact" class="btn-mk primary">Get a Free Quote</a>
+      <a href="#services" class="btn-mk">Our Services</a>
+      <div class="hero-phone-mk">
+        <span>Call Rhyan Directly</span>
+        702 201 4848
+      </div>
+    </div>
+    <div class="img-ph" style="height: 280px;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      <strong>LOGO / HERO IMAGE</strong>
+      <span>Logo_With_Number.png</span>
+      <span>Transparent PNG · Drop-shadow in CSS</span>
+    </div>
+  </div>
+  <span class="note note-design">Hero bg: dark gradient with subtle purple/red radial glows + grid overlay. Two-column layout — text left, logo right. Logo gets float animation (translateY keyframe).</span>
+  <span class="note note-dev">Hero min-height: 90vh. Logo: drop-shadow filter, not box-shadow. On mobile: logo stacks above text.</span>
+  <span class="note note-content">H1 copy confirmed. Eyebrow and subtitle locked. Phone number is a live tel: link — confirm number with client: 702-201-4848.</span>
+  <span class="note note-todo">Confirm final hero image — use Logo_With_Number.png. Client may also want a background photo behind text column.</span>
+</div>
+
+
+<!-- ════════════════════════════════
+  TRUST BAR
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: trust bar</span>
+  <div class="trust-mk">
+    <div class="trust-item-mk">👨‍👩‍👧 <div>Family Owned &amp; Operated <span>Locally Based in Las Vegas</span></div></div>
+    <div class="trust-item-mk">⚡ <div>Prompt &amp; Professional <span>We Show Up On Time</span></div></div>
+    <div class="trust-item-mk">🏅 <div>Quality Work at Fair Prices <span>No Hidden Fees</span></div></div>
+  </div>
+  <span class="note note-design">Trust bar sits between hero and first content section. Dark purple bg, gold label text, small subdued subtitle. 3-item flex row. Anchored with red top-border accent strip.</span>
+  <span class="note note-content">3 trust signals confirmed from flyer copy. Icons are placeholder emojis — swap for custom SVG icons in final pass.</span>
+</div>
+
+
+<!-- ════════════════════════════════
+  ABOUT
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: about</span>
+  <div class="content-section" id="about">
+    <div class="about-grid">
+      <div>
+        <div class="img-ph" style="height: 240px; position: relative; z-index: 1;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <strong>PHOTO OF RHYAN</strong>
+          <span>Client to supply photo</span>
+        </div>
+      </div>
+      <div>
+        <div class="section-eyebrow-mk">About Rhyan Handy</div>
+        <h2 class="section-h2-mk">Your Neighbor.<br>Your Handyman.</h2>
+        <p class="section-p-mk">Rhyan Handy built Escobar Handyman Home Services LLC on one simple idea: every homeowner deserves a reliable, skilled professional they can actually trust. With years of hands-on experience across Las Vegas homes, Rhyan brings craftsmanship, communication, and care to every job — big or small.</p>
+        <div class="about-stats-mk">
+          <div class="stat-mk"><div class="stat-num-mk">10+</div><div class="stat-lbl-mk">Years Experience</div></div>
+          <div class="stat-mk"><div class="stat-num-mk">500+</div><div class="stat-lbl-mk">Jobs Completed</div></div>
+          <div class="stat-mk"><div class="stat-num-mk">100%</div><div class="stat-lbl-mk">Licensed &amp; Insured</div></div>
+          <div class="stat-mk"><div class="stat-num-mk">LV</div><div class="stat-lbl-mk">Las Vegas Native</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="note note-todo">Awaiting photo from Rhyan. Image should be professional — job site or portrait. Minimum 800×600px.</span>
+  <span class="note note-design">Image has decorative offset box-shadow (purple) and accent square (red) behind it. Image col is z-index 1 over those elements.</span>
+  <span class="note note-content">Stat numbers (10+, 500+) are estimates — confirm accuracy with client before launch. "LV" stat is a branding element, not a number.</span>
+</div>
+
+
+<!-- ════════════════════════════════
+  SERVICES
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: services</span>
+  <div class="services-full" id="services">
+    <div class="services-inner-mk">
+      <div class="section-eyebrow-mk">What We Do</div>
+      <h2 class="section-h2-mk">Services for Property Owners</h2>
+      <p class="section-p-mk">From rental turnovers to everyday maintenance, we handle it all — promptly, professionally, and at fair prices.</p>
+
+      <div class="svc-grid-mk">
+        <div>
+          <div class="svc-header-mk">🔧 Services for Property Owners</div>
+          <div class="svc-two-col-mk">
+            <ul class="svc-col-mk">
+              <li>Drywall patch &amp; texture repair</li>
+              <li>Interior paint touch-ups</li>
+              <li>Unit turnover repairs &amp; make-ready</li>
+              <li>Door &amp; hinge adjustments</li>
+              <li>Lock changes &amp; hardware swaps</li>
+              <li>Lock, handle &amp; door hardware replacement</li>
+              <li>Cabinet handle &amp; hardware installation</li>
+              <li>Shelving installation</li>
+              <li>TV or monitor mounting</li>
+              <li>Window blind &amp; curtain rod installation</li>
+              <li>Caulking &amp; sealing</li>
+              <li>Weatherstripping installation</li>
+              <li>Minor exterior touch-ups</li>
+              <li>Curb painting &amp; numbering</li>
+            </ul>
+            <ul class="svc-col-mk">
+              <li>Pressure washing (where permitted)</li>
+              <li>Minor fence or gate adjustments</li>
+              <li>Wall corner guard installation</li>
+              <li>Baseboard, trim &amp; molding repair</li>
+              <li>Restroom accessory installation</li>
+              <li>Toilet seat &amp; fixture replacement</li>
+              <li>Light fixture &amp; ceiling fan installation</li>
+              <li>Parking lot or property signage hanging</li>
+              <li>Mailroom &amp; common area touch-ups</li>
+              <li>Move-in / move-out punch-list repairs</li>
+              <li>Minor appliance &amp; fixture replacement</li>
+              <li>Make-ready maintenance</li>
+              <li>Emergency on-call repairs</li>
+              <li><strong>…And More!</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <div class="ideal-header-mk">🏢 Ideal For</div>
+          <ul class="ideal-list-mk">
+            <li>🏠 Rental properties</li>
+            <li>🏢 Offices and small commercial spaces</li>
+            <li>💈 Salons and retail suites</li>
+            <li>👥 Homeowners and landlords</li>
+            <li>📋 Property turnovers and maintenance lists</li>
+          </ul>
+          <div style="margin-top: 16px;"><a href="#contact" class="btn-mk primary">Get a Free Quote</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="note note-design">Services section on dark bg in final. Two-panel layout: checklist left (2 cols), Ideal For right. Section headers use brand purple/red bg bars.</span>
+  <span class="note note-content">Full service list pulled from commercial property flyer. Client to confirm if any items should be removed or added.</span>
+  <span class="note note-dev">Checklist icons are CSS ::before pseudo-elements (✔ character), not images. "Ideal For" icons are emoji placeholders — consider SVG in final.</span>
+</div>
+
+
+<!-- ════════════════════════════════
+  WHY US
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: why choose us</span>
+  <div class="content-section" id="why">
+    <div class="section-eyebrow-mk">The Difference</div>
+    <h2 class="section-h2-mk">Why Homeowners Choose Rhyan</h2>
+    <div class="why-grid-mk">
+      <div>
+        <div class="why-item-mk">
+          <div class="why-num-mk">01</div>
+          <div>
+            <h4>Honest, Upfront Pricing</h4>
+            <p>No surprise charges or hidden fees. You get a clear quote before any work begins, so you're always in control.</p>
+          </div>
+        </div>
+        <div class="why-item-mk">
+          <div class="why-num-mk">02</div>
+          <div>
+            <h4>We Show Up On Time</h4>
+            <p>Your schedule matters. Rhyan respects your time by arriving when promised and finishing when committed.</p>
+          </div>
+        </div>
+        <div class="why-item-mk">
+          <div class="why-num-mk">03</div>
+          <div>
+            <h4>Craftsmanship Guaranteed</h4>
+            <p>Every job is finished to a standard Rhyan is proud to put his name on. Your satisfaction is the final sign-off.</p>
+          </div>
+        </div>
+        <div class="why-item-mk">
+          <div class="why-num-mk">04</div>
+          <div>
+            <h4>Local Las Vegas Pro</h4>
+            <p>We know this city, its homes, and its climate. That local knowledge means smarter solutions for your home.</p>
+          </div>
+        </div>
+      </div>
+      <div class="why-card-mk">
+        <blockquote>"I started this company because I believe every homeowner deserves a handyman they can actually rely on — someone who treats their home like it's their own."</blockquote>
+        <cite>— Rhyan Handy, Owner</cite>
+        <div class="owner-name">Rhyan Handy</div>
+        <div class="owner-title">Owner · Escobar Handyman Home Services LLC</div>
+      </div>
+    </div>
+  </div>
+  <span class="note note-design">Right column quote card: dark purple bg, white text, large decorative quote mark (CSS), owner name + title below. Consider adding headshot thumbnail inside card.</span>
+  <span class="note note-content">4 differentiators confirmed. Quote is placeholder — get actual quote from Rhyan or confirm this one is approved.</span>
+  <span class="note note-todo">Ask Rhyan: Is the quote accurate / approved? Should we add a 5th differentiator (e.g. Licensed &amp; Insured)?</span>
+</div>
+
+
+<!-- ════════════════════════════════
+  CTA BAND
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: cta band</span>
+  <div class="cta-band-mk">
+    <h2>Need Reliable Help With Repairs and Maintenance?</h2>
+    <p>Contact Escobar Handyman Home Services LLC today for a free, no-obligation quote. Fair prices. Honest work.</p>
+    <a href="#contact" class="btn-mk primary">Request a Free Quote</a>
+    <a href="tel:7022014848" class="cta-phone-mk">📞 702 201 4848</a>
+  </div>
+  <span class="note note-design">Full-width red band with diagonal stripe texture overlay. White text throughout. Angled clip-path on CTA button. Phone number in Bebas Neue large.</span>
+  <span class="note note-dev">CTA button uses CSS clip-path: polygon() for the angled corner treatment. Not border-radius.</span>
+</div>
+
+
+<!-- ════════════════════════════════
+  CONTACT
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: contact</span>
+  <div class="content-section" id="contact">
+    <div class="contact-grid-mk">
+      <div>
+        <div class="section-eyebrow-mk">Get In Touch</div>
+        <h2 class="section-h2-mk">Let's Talk About Your Project</h2>
+        <p class="section-p-mk">Fill out the form, or just give Rhyan a call. We'll get back to you fast with a free estimate.</p>
+        <div class="contact-item-mk">
+          <div class="contact-icon-mk">📞</div>
+          <div><strong>Phone</strong><a href="tel:7022014848">702-201-4848</a></div>
+        </div>
+        <div class="contact-item-mk">
+          <div class="contact-icon-mk">✉️</div>
+          <div><strong>Email</strong><a href="mailto:Handyman@escobarhandymanservices.com">Handyman@escobarhandymanservices.com</a></div>
+        </div>
+        <div class="contact-item-mk">
+          <div class="contact-icon-mk">📍</div>
+          <div><strong>Service Area</strong><span>Las Vegas, NV &amp; Surrounding Areas</span></div>
+        </div>
+        <div class="contact-item-mk">
+          <div class="contact-icon-mk">🕐</div>
+          <div><strong>Hours</strong><span>Mon–Sat: 7:00 AM – 7:00 PM</span></div>
+        </div>
+      </div>
+      <div class="contact-form-mk">
+        <h3>Request a Free Quote</h3>
+        <div class="form-row-mk">
+          <div class="form-group-mk"><label>First Name</label><input type="text" placeholder="John"></div>
+          <div class="form-group-mk"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+        </div>
+        <div class="form-group-mk"><label>Phone Number</label><input type="tel" placeholder="(702) 555-0000"></div>
+        <div class="form-group-mk"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+        <div class="form-group-mk">
+          <label>Service Needed</label>
+          <select>
+            <option>Select a service...</option>
+            <option>Drywall Patch &amp; Texture Repair</option>
+            <option>Interior Paint Touch-Ups</option>
+            <option>Unit Turnover / Make-Ready</option>
+            <option>Door &amp; Hardware Repairs</option>
+            <option>Emergency On-Call Repairs</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group-mk"><label>Tell Us About Your Project</label><textarea placeholder="Briefly describe what you need done..."></textarea></div>
+        <button class="submit-btn-mk" onclick="alert('Form submission — hook up to Formspree or Netlify Forms in production.')">Submit Request</button>
+      </div>
+    </div>
+  </div>
+  <span class="note note-dev">Form is not yet wired up. Recommend Formspree (free tier) or Netlify Forms. No backend needed — just a form action= attribute change.</span>
+  <span class="note note-todo">Hook up form before launch. Formspree: create account → get endpoint URL → add action="https://formspree.io/f/XXXX" method="POST" to form tag.</span>
+  <span class="note note-design">Contact icon boxes use brand purple bg + clip-path angled corner in final. Form panel has 4px purple top border accent.</span>
+  <span class="note note-content">Confirm email address with client: Handyman@escobarhandymanservices.com — is this live and monitored?</span>
+</div>
+
+
+<!-- ════════════════════════════════
+  FOOTER
+════════════════════════════════ -->
+<div class="section-wrap">
+  <span class="section-label-tag">section: footer</span>
+  <footer>
+    <div class="footer-grid-mk">
+      <div class="footer-brand-mk">
+        <div class="name">Escobar Handyman</div>
+        <div class="tagline">Home Services LLC</div>
+        <p>Fair Prices. Honest Work. Family owned &amp; operated in Las Vegas, NV — serving rental properties, landlords, and homeowners.</p>
+      </div>
+      <div class="footer-col-mk">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Drywall &amp; Paint</a></li>
+          <li><a href="#services">Unit Turnover / Make-Ready</a></li>
+          <li><a href="#services">Door &amp; Hardware</a></li>
+          <li><a href="#services">Fixture Replacement</a></li>
+          <li><a href="#services">Punch-List Repairs</a></li>
+          <li><a href="#services">Emergency On-Call</a></li>
+        </ul>
+      </div>
+      <div class="footer-col-mk">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:7022014848">702-201-4848</a></li>
+          <li><a href="#contact">Get a Free Quote</a></li>
+          <li><a href="#about">About Rhyan</a></li>
+          <li><a href="#why">Why Choose Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom-mk">
+      <span>© 2026 Escobar Handyman Home Services LLC · Las Vegas, NV</span>
+      <span>⚒ Fair Prices. Honest Work. ⚒</span>
+    </div>
+  </footer>
+  <span class="note note-design">Footer bg: near-black in final. 3-column grid: brand blurb left, services mid, contact right. Gold section headers, muted link colors.</span>
+  <span class="note note-todo">Add social media links to footer once client provides profiles (Facebook, Google Business, Yelp, Instagram).</span>
+  <span class="note note-dev">© year should be dynamic: use JS — document.write(new Date().getFullYear()) — or update manually each Jan.</span>
+</div>
+
+</body>
+</html>

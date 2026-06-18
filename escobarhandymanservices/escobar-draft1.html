@@ -76,7 +76,23 @@
   h2.section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1; color: var(--dark); margin-bottom: 16px; }
   .section-body { font-size: 1rem; line-height: 1.75; color: var(--gray); max-width: 560px; }
 
-  .about { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-wrap { background: var(--white); position: relative; overflow: hidden; }
+  .about-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      url('./img/about-bg-dots.png'),
+      url('./img/about-bg-house.png'),
+      url('./img/about-bg-tools-left.png'),
+      url('./img/about-bg-tools-right.png');
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    background-position: top -10px left -10px, top -20px right -20px, bottom -15px left -15px, bottom -15px right -15px;
+    background-size: 190px auto, 420px auto, 150px auto, 140px auto;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .about { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
   .about-image-wrap { position: relative; }
   .about-image-bg { position: absolute; inset: 20px 0 -20px 20px; background: var(--purple); z-index: 0; border-radius: 2px; }
   .about-image-accent { position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; background: var(--red); z-index: 0; }
@@ -173,6 +189,8 @@
   .footer-bottom a:hover { color: var(--white); }
 
   .hamburger { display: none; }
+  .nav-close-btn { display: none; }
+  .nav-contact-sticky { display: none; }
 
   @media (max-width: 900px) {
     .hero-inner { grid-template-columns: 1fr; }
@@ -320,6 +338,7 @@
 </div>
 
 <!-- ABOUT -->
+<div class="about-wrap">
 <section class="about" id="about">
   <div class="about-image-wrap">
     <div class="about-image-bg"></div>
@@ -343,6 +362,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- SERVICES -->
 <section class="services-section" id="services">

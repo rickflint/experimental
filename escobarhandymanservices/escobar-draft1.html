@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escobar Handyman Home Services LLC | Las Vegas, NV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #4a1d8a;
+    --purple-dark: #2d0f5e;
+    --purple-light: #6b2fbd;
+    --red: #c0392b;
+    --red-bright: #e74c3c;
+    --white: #ffffff;
+    --off-white: #f5f3ef;
+    --dark: #111111;
+    --gray: #444444;
+    --light-gray: #a1a1a1;
+    --gold: #d4a017;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; background: var(--off-white); color: var(--dark); overflow-x: hidden; }
+
+  .topbar { background: var(--purple-dark); color: var(--white); text-align: center; padding: 8px 20px; font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; }
+  .topbar a { color: var(--gold); text-decoration: none; }
+
+  nav { background: var(--dark); position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; box-shadow: 0 2px 20px rgba(0,0,0,0.5); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--white); letter-spacing: 0.08em; }
+  .nav-logo span { color: var(--red-bright); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--light-gray); text-decoration: none; font-family: 'Oswald', sans-serif; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav-links a:hover { color: var(--red-bright); border-bottom-color: var(--red-bright); }
+  .nav-cta { background: var(--red); color: var(--white) !important; padding: 8px 20px !important; border-radius: 3px; border-bottom: none !important; }
+  .nav-cta:hover { background: var(--red-bright) !important; }
+
+  .hero { background: var(--dark); position: relative; overflow: hidden; min-height: 90vh; display: flex; align-items: center; }
+  .hero-bg { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(74,29,138,0.04) 60px, rgba(74,29,138,0.04) 61px), linear-gradient(160deg, #1a0a30 0%, #0d0d0d 50%, #1a050a 100%); }
+  .hero-grid-line { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 80px 80px; }
+  .hero-glow-purple { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(74,29,138,0.25) 0%, transparent 70%); top: -100px; left: -100px; }
+  .hero-glow-red { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(192,57,43,0.15) 0%, transparent 70%); bottom: 0; right: 200px; }
+  .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding: 60px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hero-text { color: var(--white); }
+  .hero-eyebrow { font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .hero-eyebrow::before { content: ''; display: block; width: 40px; height: 2px; background: var(--gold); }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.95; margin-bottom: 8px; color: var(--white); }
+  .hero-title .red { color: var(--red-bright); }
+  .hero-subtitle { font-family: 'Oswald', sans-serif; font-size: 1.3rem; color: var(--light-gray); margin-bottom: 24px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .hero-desc { font-size: 1rem; line-height: 1.7; color: #aaa; max-width: 460px; margin-bottom: 36px; }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary { background: var(--red); color: var(--white); padding: 14px 32px; font-family: 'Oswald', sans-serif; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); transition: background 0.2s, transform 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--red-bright); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--white); padding: 14px 32px; font-family: 'Oswald', sans-serif; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; border: 2px solid rgba(255,255,255,0.3); cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+  .btn-outline:hover { border-color: var(--white); color: var(--white); }
+  .hero-phone { margin-top: 40px; display: flex; align-items: center; gap: 12px; }
+  .hero-phone .phone-icon { width: 44px; height: 44px; background: var(--purple-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; filter: brightness(1.3); }
+  .hero-phone a { color: var(--white); font-family: 'Bebas Neue', sans-serif; font-size: 2rem; text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+  .hero-phone a:hover { color: var(--gold); }
+  .hero-phone .label { display: block; font-size: 0.7rem; color: #888; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Oswald', sans-serif; }
+  .hero-logo-wrap { display: flex; justify-content: center; align-items: center; position: relative; }
+  .hero-logo-wrap::before { content: ''; position: absolute; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(74,29,138,0.3) 0%, transparent 70%); }
+  .hero-logo { max-width: 100%; width: 480px; filter: drop-shadow(0 0 40px rgba(74,29,138,0.5)) drop-shadow(0 8px 30px rgba(0,0,0,0.8)); position: relative; animation: floatLogo 4s ease-in-out infinite; }
+  @keyframes floatLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  .trust-bar { background: var(--purple-dark); padding: 24px 40px; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; border-top: 3px solid var(--red); }
+  .trust-item { display: flex; align-items: center; gap: 12px; color: var(--white); }
+  .trust-icon { font-size: 1.8rem; }
+  .trust-text strong { display: block; font-family: 'Oswald', sans-serif; font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+  .trust-text span { font-size: 0.75rem; color: #ccc; letter-spacing: 0.05em; }
+
+  .section-label { font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; display: block; flex: 1; max-width: 60px; height: 1px; background: var(--red); }
+  h2.section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.2rem, 4vw, 3.5rem); line-height: 1; color: var(--dark); margin-bottom: 16px; }
+  .section-body { font-size: 1rem; line-height: 1.75; color: var(--gray); max-width: 560px; }
+
+  .about { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .about-image-wrap { position: relative; }
+  .about-image-bg { position: absolute; inset: 20px 0 -20px 20px; background: var(--purple); z-index: 0; border-radius: 2px; }
+  .about-image-accent { position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; background: var(--red); z-index: 0; }
+  .about-img-placeholder { position: relative; z-index: 1; width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, #1a0a30, #2d0f5e); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: rgba(255,255,255,0.2); letter-spacing: 0.2em; border: 1px solid rgba(255,255,255,0.05); }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .stat { border-left: 3px solid var(--red); padding-left: 16px; }
+  .stat .num { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; color: var(--purple); line-height: 1; }
+  .stat .label { font-size: 0.8rem; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Oswald', sans-serif; }
+
+  .services-section { background: var(--dark); padding: 100px 40px; position: relative; overflow: visible; }
+  .services-section::before { content: 'SERVICES'; position: absolute; top: 20px; right: -20px; font-family: 'Bebas Neue', sans-serif; font-size: 12rem; color: rgba(255,255,255,0.02); pointer-events: none; white-space: nowrap; }
+  .services-inner { max-width: 1200px; margin: 0 auto; }
+  .services-inner .section-label { color: var(--gold); }
+  .services-inner .section-label::after { background: var(--gold); }
+  .services-inner h2.section-title { color: var(--white); }
+  .services-inner .section-body { color: #aaa; }
+  .services-flyer-grid { display: grid; grid-template-columns: 1.5fr 0.8fr; gap: 24px; margin-top: 50px; align-items: start; }
+  .services-list-header, .ideal-for-header { display: flex; align-items: center; gap: 12px; background: var(--purple); color: var(--white); font-family: 'Oswald', sans-serif; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 14px 20px; }
+  .ideal-for-header { background: var(--red); }
+  .svc-header-icon { font-size: 1.3rem; }
+  .services-two-col { display: grid; grid-template-columns: 1fr 1fr; background: #1a1a1a; border: 1px solid #2a2a2a; border-top: none; }
+  .svc-list { list-style: none; padding: 20px; }
+  .svc-list:first-child { border-right: 1px solid #2a2a2a; }
+  .svc-list li { font-size: 0.85rem; color: #ccc; padding: 6px 0 6px 26px; position: relative; border-bottom: 1px solid #242424; line-height: 1.4; }
+  .svc-list li:last-child { border-bottom: none; }
+  .svc-list li::before { content: '✓'; position: absolute; left: 0; top: 6px; width: 16px; height: 16px; background: var(--purple); border-radius: 50%; color: #fff; font-size: 0.7rem; font-weight: 900; display: flex; align-items: center; justify-content: center; line-height: 16px; text-align: center; }
+  .svc-list li.svc-more { color: var(--gold); font-family: 'Oswald', sans-serif; letter-spacing: 0.08em; font-size: 0.9rem; }
+  .svc-list li.svc-more::before { content: none; }
+  .ideal-for-wrap { display: flex; flex-direction: column; }
+  .ideal-list { list-style: none; background: #1a1a1a; border: 1px solid #2a2a2a; border-top: none; padding: 16px 20px; flex: 1; }
+  .ideal-list li { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid #242424; font-size: 0.9rem; color: #ccc; line-height: 1.4; }
+  .ideal-list li:last-child { border-bottom: none; }
+  .ideal-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+
+  .why-section { padding: 100px 40px; background: var(--off-white); }
+  .why-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: start; }
+  .why-list { margin-top: 40px; }
+  .why-item { display: flex; gap: 20px; align-items: flex-start; padding: 24px 0; border-bottom: 1px solid var(--light-gray); }
+  .why-item:last-child { border-bottom: none; }
+  .why-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; color: var(--light-gray); min-width: 48px; text-align: right; }
+  .why-item-text h4 { font-family: 'Oswald', sans-serif; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dark); margin-bottom: 6px; }
+  .why-item-text p { font-size: 0.88rem; color: var(--gray); line-height: 1.65; }
+  .why-card { background: var(--purple-dark); padding: 48px 40px; color: var(--white); position: relative; overflow: hidden; }
+  .why-card::after { content: ''; position: absolute; bottom: -40px; right: -40px; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,0.03); }
+  .why-card .big-quote { font-family: 'Bebas Neue', sans-serif; font-size: 6rem; line-height: 0.8; color: rgba(255,255,255,0.05); margin-bottom: 16px; }
+  .why-card blockquote { font-size: 1.1rem; line-height: 1.75; color: rgba(255,255,255,0.85); font-style: italic; margin-bottom: 24px; }
+  .why-card cite { font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-style: normal; }
+  .why-card .rhyan-name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--white); margin-top: 32px; margin-bottom: 4px; }
+  .why-card .rhyan-title { font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red-bright); }
+
+  .cta-band { background: linear-gradient(135deg, var(--red) 0%, #8b1a1a 100%); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
+  .cta-band::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(0,0,0,0.06) 20px, rgba(0,0,0,0.06) 21px); }
+  .cta-band-inner { position: relative; z-index: 1; }
+  .cta-band h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--white); margin-bottom: 16px; letter-spacing: 0.04em; }
+  .cta-band p { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 500px; margin: 0 auto 36px; line-height: 1.65; }
+  .btn-white { background: var(--white); color: var(--red); padding: 16px 44px; font-family: 'Oswald', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; font-weight: 700; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%); transition: transform 0.2s; display: inline-block; }
+  .btn-white:hover { transform: translateY(-3px); }
+  .cta-phone { display: block; margin-top: 20px; font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--white); text-decoration: none; letter-spacing: 0.06em; }
+  .cta-phone:hover { color: var(--gold); }
+
+  .contact-section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-items { margin-top: 36px; }
+  .contact-item { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 28px; }
+  .contact-item-icon { width: 44px; height: 44px; background: var(--purple); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%); }
+  .contact-item-text strong { display: block; font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 4px; }
+  .contact-item-text a, .contact-item-text span { font-size: 1rem; color: var(--dark); text-decoration: none; font-weight: 700; }
+  .contact-item-text a:hover { color: var(--red); }
+  .contact-form { background: var(--white); padding: 48px 40px; box-shadow: 0 4px 40px rgba(0,0,0,0.08); border-top: 4px solid var(--purple); }
+  .contact-form h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin-bottom: 24px; color: var(--dark); letter-spacing: 0.04em; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1.5px solid var(--light-gray); background: var(--off-white); font-family: 'Lato', sans-serif; font-size: 0.95rem; color: var(--dark); outline: none; transition: border-color 0.2s; border-radius: 0; appearance: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--purple); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  /* Success state */
+  .form-success { display: none; background: #f0faf2; border: 1.5px solid #4caf50; padding: 20px 24px; margin-bottom: 20px; }
+  .form-success p { font-family: 'Oswald', sans-serif; font-size: 1rem; color: #2e7d32; letter-spacing: 0.04em; }
+
+  footer { background: var(--dark); padding: 60px 40px 30px; color: var(--white); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; padding-bottom: 48px; border-bottom: 1px solid #222; }
+  .footer-brand .name { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .footer-brand .name span { color: var(--red-bright); }
+  .footer-brand .tagline { font-family: 'Oswald', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .footer-brand p { font-size: 0.88rem; line-height: 1.7; color: #888; max-width: 320px; }
+  .footer-col h4 { font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: #888; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--white); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 28px; display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #555; flex-wrap: wrap; gap: 10px; }
+  .footer-bottom a { color: #555; text-decoration: none; }
+  .footer-bottom a:hover { color: var(--white); }
+
+  .hamburger { display: none; }
+
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-logo-wrap { order: -1; }
+    .hero-logo { width: 320px; }
+    .services-flyer-grid { grid-template-columns: 1fr; }
+    .services-two-col { grid-template-columns: 1fr; }
+    .svc-list:first-child { border-right: none; border-bottom: 1px solid #2a2a2a; }
+    .about, .contact-section { grid-template-columns: 1fr; gap: 40px; }
+    .why-inner { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 0; right: 0; width: 80%; max-width: 340px; height: 100%; background: #111; padding: 0; gap: 0; z-index: 200; overflow-y: auto; box-shadow: -8px 0 40px rgba(0,0,0,0.6); }
+    .nav-links.open::before { content: 'GET IN TOUCH'; display: block; font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.3em; color: var(--gold); padding: 48px 28px 16px; }
+    .nav-links.open::after { content: ''; display: block; height: 80px; flex-shrink: 0; }
+    .nav-phone-btn { display: block; margin: 0 28px 32px; background: var(--purple-dark); color: var(--white); text-align: center; padding: 16px 20px; font-family: 'Oswald', sans-serif; font-size: 1.2rem; letter-spacing: 0.08em; text-decoration: none; border-radius: 3px; }
+    .nav-links.open a { padding: 18px 28px; font-size: 1.3rem; font-family: 'Oswald', sans-serif; letter-spacing: 0.04em; border-bottom: 1px solid #222; color: var(--white); text-transform: none; }
+    .nav-links.open a:hover { color: var(--gold); border-bottom-color: #222; }
+    .nav-links.open .nav-cta { display: none; }
+    .nav-contact-sticky { position: fixed; bottom: 0; right: 0; width: 80%; max-width: 340px; background: var(--purple-dark); color: var(--white); text-align: center; padding: 20px; font-family: 'Oswald', sans-serif; font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; z-index: 201; display: none; }
+    .nav-contact-sticky.visible { display: block; }
+    .nav-close-btn { position: fixed; top: 16px; right: 16px; width: 40px; height: 40px; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; z-index: 202; display: none; align-items: center; justify-content: center; }
+    .nav-close-btn.visible { display: flex; }
+    .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 199; }
+    .nav-overlay.visible { display: block; }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 8px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); }
+    .trust-bar { gap: 30px; }
+  }
+  @media (max-width: 600px) {
+    body, html { overflow-x: hidden; }
+    .topbar { padding: 8px 16px; font-size: 0.75rem; }
+    .hero-inner { padding: 40px 16px; }
+    .about { padding: 60px 16px; }
+    .why-section { padding: 60px 16px; }
+    .services-section { padding: 60px 16px; }
+    .contact-section { padding: 60px 16px; }
+    .cta-band { padding: 60px 16px; }
+    .trust-bar { padding: 20px 16px; flex-direction: column; gap: 20px; align-items: flex-start; }
+    footer { padding: 48px 16px 24px; }
+    .hero-glow-purple, .hero-glow-red { display: none; }
+    .hero-logo { width: 260px; }
+    .hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+    .footer-inner { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    .services-flyer-grid { gap: 16px; }
+    .services-two-col { grid-template-columns: 1fr; }
+    .svc-list { padding: 12px 14px; }
+    .svc-list li { font-size: 0.8rem; padding: 5px 0 5px 20px; }
+    .ideal-for-wrap { width: 100%; }
+    .ideal-list { padding: 10px 14px; }
+    .ideal-list li { font-size: 0.85rem; gap: 8px; }
+    .services-list-header, .ideal-for-header { font-size: 0.85rem; padding: 12px 14px; }
+    .why-card { padding: 32px 24px; }
+    .contact-form { padding: 32px 20px; }
+    .cta-band h2 { font-size: clamp(1.6rem, 6vw, 2.5rem); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  Licensed &amp; Insured &middot; Las Vegas, NV &nbsp;|&nbsp; Call Now: <a href="tel:7022014848">702-201-4848</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Escobar <span>Handyman</span></div>
+  <ul class="nav-links" id="navlinks">
+    <a href="tel:7022014848" class="nav-phone-btn">702-201-4848</a>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+    <li><a href="tel:7022014848" class="nav-cta">702-201-4848</a></li>
+  </ul>
+  <div class="nav-overlay" id="navoverlay" onclick="closeNav()"></div>
+  <button class="nav-close-btn" id="navclose" onclick="closeNav()">&#x2715;</button>
+  <a href="#contact" class="nav-contact-sticky" id="navsticky" onclick="closeNav()">Contact</a>
+  <button class="hamburger" aria-label="Menu" onclick="openNav()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-line"></div>
+  <div class="hero-glow-purple"></div>
+  <div class="hero-glow-red"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Las Vegas, NV &middot; Home Services</div>
+      <h1 class="hero-title">
+        Reliable Handyman<br>Services for<br><span class="red">Property Owners</span>
+      </h1>
+      <div class="hero-subtitle">Escobar Handyman Home Services LLC</div>
+      <p class="hero-desc">
+        Dependable help for rentals, turnovers, punch lists, and everyday property maintenance.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="#services" class="btn-outline">Our Services</a>
+      </div>
+      <div class="hero-phone">
+        <div class="phone-icon">&#128222;</div>
+        <div>
+          <span class="label">Call Escobar Handyman Services Directly</span>
+          <a href="tel:7022014848">702 201 4848</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-logo-wrap">
+      <img src="./img/escobar-logo01.png" alt="Escobar Handyman Home Services LLC Logo" class="hero-logo">
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <div class="trust-icon">&#128106;</div>
+    <div class="trust-text">
+      <strong>Family Owned &amp; Operated</strong>
+      <span>Locally Based in Las Vegas</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">&#9889;</div>
+    <div class="trust-text">
+      <strong>Prompt &amp; Professional</strong>
+      <span>We Show Up On Time</span>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="trust-icon">&#127885;</div>
+    <div class="trust-text">
+      <strong>Quality Work at Fair Prices</strong>
+      <span>No Hidden Fees</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-image-wrap">
+    <div class="about-image-bg"></div>
+    <div class="about-image-accent"></div>
+    <div class="about-img-placeholder">[ PHOTO or IMAGE here ]</div>
+  </div>
+  <div class="about-content">
+    <div class="section-label">About Escobar Handyman Services</div>
+    <h2 class="section-title">Your Neighbor.<br>Your Handyman.</h2>
+    <p class="section-body">
+      Escobar Handyman Services built Escobar Handyman Home Services LLC on one simple idea:
+      every homeowner deserves a reliable, skilled professional they can actually trust.
+      With years of hands-on experience across Las Vegas homes, Escobar Handyman Services bring craftsmanship,
+      communication, and care to every job &mdash; big or small.
+    </p>
+    <div class="about-stats">
+      <div class="stat"><div class="num">10+</div><div class="label">Years Experience</div></div>
+      <div class="stat"><div class="num">500+</div><div class="label">Jobs Completed</div></div>
+      <div class="stat"><div class="num">100%</div><div class="label">Licensed &amp; Insured</div></div>
+      <div class="stat"><div class="num">LV</div><div class="label">Las Vegas Native</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="services-inner">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Services for<br>Property Owners</h2>
+    <p class="section-body">From rental turnovers to everyday maintenance, we handle it all &mdash; promptly, professionally, and at fair prices.</p>
+    <div class="services-flyer-grid">
+      <div class="services-list-wrap">
+        <div class="services-list-header">
+          <span class="svc-header-icon">&#128295;</span>
+          <span>Services for Property Owners</span>
+        </div>
+        <div class="services-two-col">
+          <ul class="svc-list">
+            <li>Drywall patch &amp; texture repair</li>
+            <li>Interior paint touch-ups</li>
+            <li>Unit turnover repairs &amp; make-ready</li>
+            <li>Door &amp; hinge adjustments</li>
+            <li>Lock changes &amp; hardware swaps</li>
+            <li>Lock, handle &amp; door hardware replacement</li>
+            <li>Cabinet handle &amp; hardware installation</li>
+            <li>Shelving installation</li>
+            <li>TV or monitor mounting</li>
+            <li>Window blind &amp; curtain rod installation</li>
+            <li>Caulking &amp; sealing</li>
+            <li>Weatherstripping installation</li>
+            <li>Minor exterior touch-ups</li>
+            <li>Curb painting &amp; numbering</li>
+          </ul>
+          <ul class="svc-list">
+            <li>Pressure washing (where permitted)</li>
+            <li>Minor fence or gate adjustments</li>
+            <li>Wall corner guard installation</li>
+            <li>Baseboard, trim &amp; molding repair</li>
+            <li>Restroom accessory installation</li>
+            <li>Toilet seat &amp; fixture replacement</li>
+            <li>Light fixture &amp; ceiling fan installation</li>
+            <li>Parking lot or property signage hanging</li>
+            <li>Mailroom &amp; common area touch-ups</li>
+            <li>Move-in / move-out punch-list repairs</li>
+            <li>Minor appliance &amp; fixture replacement</li>
+            <li>Make-ready maintenance</li>
+            <li>Emergency on-call repairs</li>
+            <li class="svc-more">&hellip;And More!</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ideal-for-wrap">
+        <div class="ideal-for-header">
+          <span class="svc-header-icon">&#127970;</span>
+          <span>Ideal For</span>
+        </div>
+        <ul class="ideal-list">
+          <li><span class="ideal-icon">&#127968;</span>Rental properties</li>
+          <li><span class="ideal-icon">&#127970;</span>Offices and small commercial spaces</li>
+          <li><span class="ideal-icon">&#128136;</span>Salons and retail suites</li>
+          <li><span class="ideal-icon">&#128101;</span>Homeowners and landlords</li>
+          <li><span class="ideal-icon">&#128203;</span>Property turnovers and maintenance lists</li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="margin-top:32px;">Get a Free Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section" id="why">
+  <div class="why-inner">
+    <div>
+      <div class="section-label">The Difference</div>
+      <h2 class="section-title">Why Homeowners<br>Choose Escobar Handyman Services</h2>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-num">01</div>
+          <div class="why-item-text">
+            <h4>Honest, Upfront Pricing</h4>
+            <p>No surprise charges or hidden fees. You get a clear quote before any work begins, so you're always in control.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">02</div>
+          <div class="why-item-text">
+            <h4>We Show Up On Time</h4>
+            <p>Your schedule matters. Escobar Handyman Services respect your time by arriving when promised and finishing when committed.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">03</div>
+          <div class="why-item-text">
+            <h4>Craftsmanship Guaranteed</h4>
+            <p>Every job is finished to a standard Escobar Handyman Services are proud to put our name on. Your satisfaction is the final sign-off.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">04</div>
+          <div class="why-item-text">
+            <h4>Local Las Vegas Pro</h4>
+            <p>We know this city, its homes, and its climate. That local knowledge means smarter solutions for your home.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="why-card">
+        <div class="big-quote">&ldquo;</div>
+        <blockquote>
+          &ldquo;I started this company because I believe every homeowner deserves a handyman they can actually rely on &mdash; someone who treats their home like it&rsquo;s their own.&rdquo;
+        </blockquote>
+        <cite>&mdash; Escobar Handyman Services, Mr Escobar, Owners</cite>
+        <div class="rhyan-name">Escobar Handyman Services</div>
+        <div class="rhyan-title">Owner &middot; Escobar Handyman Home Services LLC</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-inner">
+    <h2>Need Reliable Help With<br>Repairs and Maintenance?</h2>
+    <p>Contact Escobar Handyman Home Services LLC today for a free, no-obligation quote. Fair prices. Honest work.</p>
+    <a href="#contact" class="btn-white">Request a Free Quote</a>
+    <a href="tel:7022014848" class="cta-phone">&#128222; 702 201 4848</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-info">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Let&rsquo;s Talk<br>About Your Project</h2>
+    <p class="section-body">
+      Fill out the form, or just give Escobar Handyman Services a call. We&rsquo;ll get back to you fast with a free estimate
+      and everything you need to move forward.
+    </p>
+    <div class="contact-items">
+      <div class="contact-item">
+        <div class="contact-item-icon">&#128222;</div>
+        <div class="contact-item-text">
+          <strong>Phone</strong>
+          <a href="tel:7022014848">702-201-4848</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">&#9993;&#65039;</div>
+        <div class="contact-item-text">
+          <strong>Email</strong>
+          <a href="mailto:Handyman@escobarhandymanservices.com">Handyman@escobarhandymanservices.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">&#128205;</div>
+        <div class="contact-item-text">
+          <strong>Service Area</strong>
+          <span>Las Vegas, NV &amp; Surrounding Areas</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">&#128336;</div>
+        <div class="contact-item-text">
+          <strong>Hours</strong>
+          <span>Mon&ndash;Sat: 7:00 AM &ndash; 7:00 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <h3>Request a Free Quote</h3>
+
+    <!-- Shown after successful submission -->
+    <div class="form-success" id="formSuccess">
+      <p>&#10003; Thanks! We will be in touch with you shortly.</p>
+    </div>
+
+    <!--
+      FORMSPREE SETUP:
+      1. Create a free account at https://formspree.io
+      2. Create a new form — you'll get an ID like "xabcd1234"
+      3. Replace YOUR_FORM_ID below with that ID
+    -->
+    <form id="quoteForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="first_name" placeholder="John" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="last_name" placeholder="Smith" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(702) 555-0000">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="service">Service Needed</label>
+        <select id="service" name="service">
+          <option value="">Select a service...</option>
+          <option>Drywall Patch &amp; Texture Repair</option>
+          <option>Interior Paint Touch-Ups</option>
+          <option>Unit Turnover / Make-Ready</option>
+          <option>Door &amp; Hardware Repairs</option>
+          <option>Shelving / TV Mounting</option>
+          <option>Light Fixture &amp; Ceiling Fan Installation</option>
+          <option>Toilet / Fixture Replacement</option>
+          <option>Move-In / Move-Out Punch List</option>
+          <option>Pressure Washing</option>
+          <option>Caulking &amp; Sealing</option>
+          <option>Emergency On-Call Repairs</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Tell Us About Your Project</label>
+        <textarea id="message" name="message" placeholder="Briefly describe what you need done..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary" style="width:100%; font-size:1rem; padding:16px; border:none; cursor:pointer;">
+        Submit Request
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="name">Escobar <span>Handyman</span></div>
+      <div class="tagline">Home Services LLC</div>
+      <p>Fair Prices. Honest Work. Family owned &amp; operated in Las Vegas, NV &mdash; serving rental properties, landlords, and homeowners.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Drywall &amp; Paint</a></li>
+        <li><a href="#services">Unit Turnover / Make-Ready</a></li>
+        <li><a href="#services">Door &amp; Hardware Repairs</a></li>
+        <li><a href="#services">Fixture &amp; Appliance Replacement</a></li>
+        <li><a href="#services">Punch-List Repairs</a></li>
+        <li><a href="#services">Emergency On-Call</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:7022014848">702-201-4848</a></li>
+        <li><a href="#contact">Get a Free Quote</a></li>
+        <li><a href="#about">About Escobar Handyman Services</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 Escobar Handyman Home Services LLC &middot; Las Vegas, NV</span>
+    <span>&#9874; Fair Prices. Honest Work. &#9874;</span>
+  </div>
+</footer>
+
+<script>
+  // ─── NAV ───
+  function openNav() {
+    document.getElementById('navlinks').classList.add('open');
+    document.getElementById('navclose').classList.add('visible');
+    document.getElementById('navsticky').classList.add('visible');
+    document.getElementById('navoverlay').classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    document.getElementById('navlinks').classList.remove('open');
+    document.getElementById('navclose').classList.remove('visible');
+    document.getElementById('navsticky').classList.remove('visible');
+    document.getElementById('navoverlay').classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', closeNav));
+
+  // ─── FORMSPREE AJAX SUBMIT ───
+  // Submits via fetch so the user stays on the page.
+  const quoteForm = document.getElementById('quoteForm');
+  quoteForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = quoteForm.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending\u2026';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(quoteForm.action, {
+        method: 'POST',
+        body: new FormData(quoteForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        quoteForm.reset();
+        quoteForm.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else {
+        btn.textContent = 'Error \u2014 Please Try Again';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      btn.textContent = 'Error \u2014 Please Try Again';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>

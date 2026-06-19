@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="./script/gate.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Escobar Handyman Home Services LLC | Las Vegas, NV</title>
@@ -629,12 +630,15 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 Escobar Handyman Home Services LLC &middot; Las Vegas, NV</span>
+    <span>&copy; <span id="copyrightDate">2026</span> Escobar Handyman Home Services LLC &middot; Las Vegas, NV</span>
     <span>&#9874; Fair Prices. Honest Work. &#9874;</span>
   </div>
 </footer>
 
 <script>
+  // Set current year in footer
+  document.getElementById('copyrightDate').textContent = new Date().getFullYear();  
+
   // ─── NAV ───
   function openNav() {
     document.getElementById('navlinks').classList.add('open');
